@@ -1,0 +1,12 @@
+database design
+
+order
+ - unique id
+ - date
+ - customer id (session id)
+ - total price
+ 
+cart (named after unique id, e.g. cart_42 or cart_fjdkl432l)
+ - product name
+ - product price
+ - product quantity
