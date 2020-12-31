@@ -4,19 +4,33 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
     version="2.4">
 
-    <display-name>Tom's Bakery</display-name>
+    <display-name>TK Bakery</display-name>
     <description>
 	This is my full-stack web application for an online shop.
     </description>
+    
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 
     <servlet>
         <servlet-name>OrderServlet</servlet-name>
         <servlet-class>mypackage.OrderServlet</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>CartServlet</servlet-name>
+        <jsp-file>/cart.jsp</jsp-file>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>CartServlet</servlet-name>
+        <url-pattern>/cart</url-pattern>
     </servlet-mapping>
 
 </web-app>

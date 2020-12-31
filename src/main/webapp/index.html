@@ -7,20 +7,16 @@
     </head>
     <body>
         <header>
-            <div id="topbar">
-                <div id="logo">
-                    <h1>Tom's Bakery</h1>
-                </div>
-                <div id="navigation">
-                    <ul>
-                        <li><a href="menu.html">Menu</a></li>
-                        <li><a href="">About</a></li>
-                        <li><a href="">Contact</a></li>
+            <div id="navigation-bar" style="background-color:#ff7f7f" >
+                <nav class="navbar navbar-expand-sm" >
+                    <a class="navbar-brand" href="#">
+                        <img src="" alt="TK Bakery" style="width:40px" />
+                    </a>
+                    <ul class="navbar-nav">
+                        <li class="nav-item" ><a class="nav-link" href="menu.html">Menu</a></li>
+                        <li class="nav-item" ><a class="nav-link" href="/cart">Cart</a></li>
                     </ul>
-                </div>
-                <div id="cart">
-                    <a href="cart.jsp">Cart</a>
-                </div>
+                </nav>
             </div>
         </header>
         <section>
@@ -28,27 +24,27 @@
                 <h3 style="font-size:40px">Welcome to Tom's Bakery</h3>
             </div>
             <div id="main-image">
-                <img src="images/kneadbread.jpg"></img>
+                <img class="img-thumbnail" src="images/kneadbread.jpg"></img>
             </div>
             <h3 style="font-size:40px">Featured Items</h3>
             <div id="featured">
                 <div class="featured">
                     <a href="sourdough.html">
-                        <img id="sourdough" src="images/sourdough.jpg" alt="Sourdough Bread"/>
+                        <img class="img-thumbnail" id="sourdough" src="images/sourdough.jpg" alt="Sourdough Bread"/>
                     </a>
                     <p>Sourdough Bread</p>
                     <p>$4.99</p>
                 </div>
                 <div class="featured">
                     <a href="">
-                        <img id="turtle" src="images/turtle.jpg" />
+                        <img class="img-thumbnail" id="turtle" src="images/turtle.jpg" />
                     </a>
                     <p>Turtle Bread</p>
                     <p>$7.99</p>
                 </div>
                 <div class="featured">
                     <a href="">
-                        <img id="breadbowl" src="images/bowls.jpg" />
+                        <img class="img-thumbnail" id="breadbowl" src="images/bowls.jpg" />
                     </a>
                     <p>Bread Bowl</p>
                     <p>$5.99</p>
