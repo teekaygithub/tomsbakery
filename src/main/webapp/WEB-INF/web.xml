@@ -23,6 +23,22 @@
         <jsp-file>/cart.jsp</jsp-file>
     </servlet>
     
+    <servlet>
+        <servlet-name>SourdoughBread</servlet-name>
+        <jsp-file>/sourdough.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>TurtleBread</servlet-name>
+        <jsp-file>/turtlebread.jsp</jsp-file>
+    </servlet>
+    
+    <servlet>
+        <servlet-name>BreadBowl</servlet-name>
+        <jsp-file>/breadbowl.jsp</jsp-file>
+    </servlet>
+    
+    
     <servlet-mapping>
         <servlet-name>OrderServlet</servlet-name>
         <url-pattern>/order</url-pattern>
@@ -31,6 +47,21 @@
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>SourdoughBread</servlet-name>
+        <url-pattern>/sourdough</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>TurtleBread</servlet-name>
+        <url-pattern>/turtlebread</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>BreadBowl</servlet-name>
+        <url-pattern>/breadbowl</url-pattern>
     </servlet-mapping>
 
 </web-app>

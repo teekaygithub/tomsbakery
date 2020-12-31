@@ -6,9 +6,9 @@ body {
     margin-bottom: 40px;
 }
 
-#container {
-    display: table;
-}
+/* #container { */
+    /* display: table; */
+/* } */
 
 #image {
     display: table-cell;
@@ -22,16 +22,16 @@ body {
     left: 10%;
 }
 
-#description {
-    display: table-cell;
-    margin: 20px;
-    width: 40%;
-}
+/* #description { */
+    /* display: table-cell; */
+    /* margin: 20px; */
+    /* width: 40%; */
+/* } */
 
-img {
-    width: 500px;
-    height: 400px;
-}
+/* img { */
+    /* width: 500px; */
+    /* height: 400px; */
+/* } */
 
 #quantity {
     width: 80px;
