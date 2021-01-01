@@ -17,7 +17,7 @@
         <div class="row" id="container">
             <div class="col-6" id="image">
                 <a href="">
-                    <img class="img-thumbnail img-fluid" src="images/turtle.jpg" alt="Turtle-Shaped Bread"/>
+                    <img class="img-thumbnail img-fluid" src="resources/images/turtle.jpg" alt="Turtle-Shaped Bread"/>
                 </a>
             </div>
             <div class="col-6" id="description">

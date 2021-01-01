@@ -17,7 +17,7 @@
         <div class="row" id="container">
             <div class="col-6" id="image">
                 <a href="">
-                    <img class="img-thumbnail img-fluid" src="images/bowls.jpg" alt="Bread Bowl"/>
+                    <img class="img-thumbnail img-fluid" src="resources/images/bowls.jpg" alt="Bread Bowl"/>
                 </a>
             </div>
             <div class="col=6" id="description">

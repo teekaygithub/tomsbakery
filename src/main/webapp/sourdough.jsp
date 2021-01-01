@@ -18,7 +18,7 @@
         <div class="row">
             <div class="col-6">
                 <a href="">
-                    <img class="img-thumbnail img-fluid" src="images/sourdough.jpg" alt="Sourdough Bread"/>
+                    <img class="img-thumbnail img-fluid" src="resources/images/sourdough.jpg" alt="Sourdough Bread"/>
                 </a>
             </div>
             <div class="col-6">
