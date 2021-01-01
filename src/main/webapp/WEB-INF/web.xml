@@ -15,7 +15,7 @@
 
     <servlet>
         <servlet-name>OrderServlet</servlet-name>
-        <servlet-class>mypackage.OrderServlet</servlet-class>
+        <servlet-class>com.tkato.tkbakery.OrderServlet</servlet-class>
     </servlet>
     
     <servlet>

@@ -1,4 +1,4 @@
-<jsp:useBean id="cart" scope="session" class="mypackage.Cart" />
+<jsp:useBean id="cart" scope="session" class="com.tkato.tkbakery.Cart" />
 
 <jsp:setProperty name="cart" property="*" />
 

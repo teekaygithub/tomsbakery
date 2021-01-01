@@ -1,14 +1,19 @@
-package mypackage;
+package com.tkato.tkbakery;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.sql.*;
 import java.net.*;
-import java.time.LocalDateTime;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 //TODO: add logging to improve debugging (instead of using console prints)
 public class OrderServlet extends HttpServlet {
+    
+    private Logger log = LoggerFactory.getLogger(OrderServlet.class);
     private boolean remote; // false = local (use localhost), true = remotely-hosted (heroku)
     
     @Override 
@@ -24,6 +29,7 @@ public class OrderServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             boolean rc;
+            String sql = "";
             response.setContentType("text/html");
             out.println("<!DOCTYPE html>");
             
@@ -35,41 +41,44 @@ public class OrderServlet extends HttpServlet {
             
             stmt = conn.createStatement();
             
+            // Get today's date in yyyy-mm-dd format
+            Date date = new Date();
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String today = formatter.format(date);
+            
+            // Record order data
+            sql = "INSERT INTO orders VALUES(0,\"" + today + "\",0,0)";
+            rc = stmt.execute(sql);
+            log.info("SQL query: %s\n", sql);
+            
             // Get the next available purchase order ID
             String[] items = request.getParameterValues("items");
-            String sql = "SELECT MAX(id) AS id from orders";
-            System.out.format("SQL query: %s\n", sql); //debug
+            sql = "SELECT MAX(id) AS id from orders";
+            log.info("SQL query: %s\n", sql);
             ResultSet rs  = stmt.executeQuery(sql);
             int maxID = 0;
             while(rs.next()) {
-                maxID = rs.getInt("id")+1;
-                System.out.format("the maximum order ID is: %d\n", maxID);
+                maxID = rs.getInt("id");
+                log.info("the maximum order ID is: %d\n", maxID);
             }
             
             // Record cart data
-            // TODO: handle case where cart table already exists
             String tblName = "cart_"+Integer.toString(maxID);
-            sql = "CREATE TABLE "+tblName+" (name VARCHAR(255), price INT, quantity INT)";
-            System.out.format("SQL query: %s\n", sql); //debug
+            sql = "CREATE TABLE IF NOT EXISTS " + tblName + " (name VARCHAR(255), price INT, quantity INT)";
+            log.info("SQL query: %s\n", sql);
             stmt.execute(sql);
             for (String item: items) {
-                System.out.format("item: %s\n", item); //debug
+                log.info("item: %s\n", item);
                 sql = "INSERT INTO " + tblName + " (name) VALUES(\'" + item + "\')";
-                System.out.format("SQL query: %s\n", sql); //debug
+                log.info("SQL query: %s\n", sql);
                 rc = stmt.execute(sql);
             }
             
-            // Record order data
-            // TODO: implement current date-data generation in yyyy-mm-dd format
-            // LocalDateTime ldt = LocalDateTime.now();
-            sql = "INSERT INTO orders VALUES(0,'2020-12-19',0,0)";
-            rc = stmt.execute(sql);
-            System.out.format("SQL query: %s\n", sql); //debug
-            
-            out.println("<h3>SQL query successful</h3>");
-            out.println("<a href=\"index.html\">Back to Home</a>");
-        } catch(Exception e) {e.printStackTrace();}
-        out.println("GET request complete");
+            out.println("<h3>Order complete!</h3>");
+            out.println("<p>Thank you for shopping at TK Bakery</p>");
+            out.println("<a href=\"/\">Back to Home</a>");
+        } catch(Exception e) {log.error("Order failed to complete, check stack trace on the console");e.printStackTrace();}
+        log.info("GET request complete");
     }
     
     public static Connection getConnection() throws URISyntaxException, SQLException, ClassNotFoundException {
