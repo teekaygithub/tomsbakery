@@ -8,4 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProductRepository extends CrudRepository<CustomProduct, Long> {
     
+    public CustomProduct findByCustomKey(String customKey);
+
+    public void deleteByCustomKey(String customKey);
 }

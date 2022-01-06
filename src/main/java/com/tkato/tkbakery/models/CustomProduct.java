@@ -17,6 +17,8 @@ public class CustomProduct {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String customKey;
+
     @NotEmpty(message = "Product name required")
     private String name;
 
@@ -36,6 +38,14 @@ public class CustomProduct {
 
     public Date getUpdatedAt() {
         return updatedAt;
+    }
+
+    public String getCustomKey() {
+        return customKey;
+    }
+
+    public void setCustomKey(String customKey) {
+        this.customKey = customKey;
     }
 
     public void setUpdatedAt(Date updatedAt) {

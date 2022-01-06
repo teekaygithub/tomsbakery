@@ -8,7 +8,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.PostConstruct;
+import javax.transaction.Transactional;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -34,14 +38,29 @@ public class ProductService {
         Stripe.apiKey = stripeSecretKey;
     }
 
-    public Product findByProductId(String id) throws StripeException {
-        Product product = Product.retrieve(id);
-        return product;
+    public CustomProduct registerNewProduct(String name) throws StripeException {
+        // First register the product with Stripe
+        Map<String, Object> params = new HashMap<>();
+        params.put("name", name);
+        Product product = Product.create(params);
+
+        // Now save in our DB. Be sure to set Stripe's unique ID for the product onto our copy as well.
+        CustomProduct customProduct = new CustomProduct();
+        customProduct.setName(name);
+        customProduct.setCustomKey(product.getId());
+        return productRepository.save(customProduct);
     }
 
-    public CustomProduct registerNewProduct(String name) {
-        CustomProduct product = new CustomProduct();
-        product.setName(name);
-        return productRepository.save(product);
+    public CustomProduct findByProductId(String id) throws StripeException {
+        Product product = Product.retrieve(id);
+        return productRepository.findByCustomKey(product.getId());
+    }
+
+    @Transactional
+    public void removeByProductId(String id) throws StripeException {
+        Product product = Product.retrieve(id);
+        Product deletedProduct = product.delete();
+
+        productRepository.deleteByCustomKey(deletedProduct.getId());
     }
 }
