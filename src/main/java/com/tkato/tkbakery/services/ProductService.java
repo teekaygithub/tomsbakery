@@ -4,9 +4,7 @@ import com.tkato.tkbakery.models.CustomProduct;
 import com.tkato.tkbakery.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +14,7 @@ import javax.transaction.Transactional;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
+import com.stripe.model.Price;
 import com.stripe.model.Product;
 
 @Service
@@ -26,11 +25,8 @@ public class ProductService {
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
-    private RestTemplate restTemplate;
-
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.restTemplate = new RestTemplate();
     }
 
     @PostConstruct
@@ -38,17 +34,22 @@ public class ProductService {
         Stripe.apiKey = stripeSecretKey;
     }
 
-    public CustomProduct registerNewProduct(String name) throws StripeException {
+    public CustomProduct registerNewProduct(CustomProduct newProduct) throws StripeException {
         // First register the product with Stripe
         Map<String, Object> params = new HashMap<>();
-        params.put("name", name);
+        params.put("name", newProduct.getName());
         Product product = Product.create(params);
 
+        // Second, register a price object with the newly created product
+        Map<String, Object> priceparams = new HashMap<>();
+        priceparams.put("currency", "usd");
+        priceparams.put("unit_amount", newProduct.getPrice());
+        priceparams.put("product", product.getId());
+        Price price = Price.create(priceparams);
+
         // Now save in our DB. Be sure to set Stripe's unique ID for the product onto our copy as well.
-        CustomProduct customProduct = new CustomProduct();
-        customProduct.setName(name);
-        customProduct.setCustomKey(product.getId());
-        return productRepository.save(customProduct);
+        newProduct.setCustomKey(product.getId());
+        return productRepository.save(newProduct);
     }
 
     public CustomProduct findByProductId(String id) throws StripeException {
@@ -58,9 +59,14 @@ public class ProductService {
 
     @Transactional
     public void removeByProductId(String id) throws StripeException {
+        // Stripe API does not support deletion of a product if there is a price-object associated
+        // with it. Therefore all we can do is to deactivate the product and manually delete each product-price price pair
+        // over the Stripe dashboard.
         Product product = Product.retrieve(id);
-        Product deletedProduct = product.delete();
+        Map<String, Object> params = new HashMap<>();
+        params.put("active", false);
+        Product updatedProduct = product.update(params);
 
-        productRepository.deleteByCustomKey(deletedProduct.getId());
+        productRepository.deleteByCustomKey(id);
     }
 }

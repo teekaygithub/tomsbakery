@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -21,6 +22,10 @@ public class CustomProduct {
 
     @NotEmpty(message = "Product name required")
     private String name;
+
+    @NotNull(message = "Product price required in cents (USD)")
+    // Price in US cents (e.g. 300 cents = $3.00)
+    private Integer price;
 
     private String description;
 
@@ -86,5 +91,13 @@ public class CustomProduct {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getPrice() {
+        return price;
+    }
+
+    public void setPrice(Integer price) {
+        this.price = price;
     }
 }

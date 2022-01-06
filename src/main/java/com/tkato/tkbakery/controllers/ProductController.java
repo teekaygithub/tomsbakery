@@ -30,7 +30,7 @@ public class ProductController {
     
     @PostMapping("/register")
     public ResponseEntity<CustomProduct> registerProductRoute(@Valid @RequestBody CustomProduct customProduct) throws StripeException {
-        CustomProduct newProduct = productService.registerNewProduct(customProduct.getName());
+        CustomProduct newProduct = productService.registerNewProduct(customProduct);
         return new ResponseEntity<CustomProduct>(newProduct, HttpStatus.CREATED);
     }
 
