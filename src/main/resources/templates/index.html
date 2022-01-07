@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" th:href="@{/css/style.css}" />
+        <script th:src="@{/js/carousel.js}" defer></script>
     </head>
     <body>
         <header>
@@ -26,8 +27,16 @@
             </nav>
         </header>
         <div class="container">
-            <div>
-                <img th:src="@{/images/sourdough.jpg}" style="width:100%;height:auto" />
+            <div id="carousel-container">
+                <div class="carousel-slide fade">
+                    <img th:src="@{/images/sourdough.jpg}" />
+                </div>
+                <div class="carousel-slide fade">
+                    <img th:src="@{/images/turtle.jpg}" />
+                </div>
+                <div class="carousel-slide fade">
+                    <img th:src="@{/images/bowls.jpg}" />
+                </div>
             </div>
             <div id="featured-pastries-container">
                 <h3 style="text-align:left">Featured Pastries</h3>
