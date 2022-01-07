@@ -2,9 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
         <title>Checkout</title>
+        <script src="https://js.stripe.com/v3/"></script>
     </head>
     <body>
-        <form action="/create-checkout-session" method="POST">
+        <form action="/api/checkout/createsession" method="POST">
             <button type="submit">Checkout</button>
         </form>
     </body>
