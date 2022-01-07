@@ -20,6 +20,8 @@ public class CustomProduct {
 
     private String customKey;
 
+    private String customPriceKey;
+
     @NotEmpty(message = "Product name required")
     private String name;
 
@@ -39,6 +41,14 @@ public class CustomProduct {
 
     public Long getId() {
         return id;
+    }
+
+    public String getCustomPriceKey() {
+        return customPriceKey;
+    }
+
+    public void setCustomPriceKey(String customPriceKey) {
+        this.customPriceKey = customPriceKey;
     }
 
     public Date getUpdatedAt() {

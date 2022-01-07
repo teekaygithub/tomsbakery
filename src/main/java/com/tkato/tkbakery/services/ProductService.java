@@ -49,6 +49,7 @@ public class ProductService {
 
         // Now save in our DB. Be sure to set Stripe's unique ID for the product onto our copy as well.
         newProduct.setCustomKey(product.getId());
+        newProduct.setCustomPriceKey(price.getId());
         return productRepository.save(newProduct);
     }
 
