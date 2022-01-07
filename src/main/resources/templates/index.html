@@ -7,6 +7,31 @@
         <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
-        <h1>Tom's Bakery</h1>
+        <header>
+            <div id="header-logo">
+                <a href="/">Tom's Bakery</a>
+            </div>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">Menu</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact Us</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <div class="container">
+            <div>
+                <img th:src="@{/images/sourdough.jpg}" style="width:100%;height:auto" />
+            </div>
+            <div id="featured-pastries-container">
+                <h3 style="text-align:left">Featured Pastries</h3>
+            </div>
+        </div>
     </body>
 </html>

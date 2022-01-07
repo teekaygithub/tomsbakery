@@ -4,7 +4,41 @@
 
 body {
     font-family: arial;
+    font-size: 1rem;
+    line-height: 1.5;
+    font-style: normal;
+    color: rgb(230, 136, 15);
     text-align: center;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+}
+
+li {
+    display: inline-block;
+    margin-right: 1rem;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* NAVIGATION HEADER */
+
+/* #header-logo {
+    float: left;
+} */
+
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+    font-size: 2rem;
 }
 
 #navigation-bar {
@@ -20,6 +54,17 @@ body {
     width: 300px;
     height: 300px;
     margin: auto 18px;
+}
+
+/* MAIN CONTENT */
+
+.container {
+    width: 65vw;
+    margin: 0 auto;
+}
+
+#featured-pastries-container {
+    padding-top: 1rem;
 }
 
 #featured {
