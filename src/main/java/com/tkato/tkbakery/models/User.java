@@ -13,6 +13,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -30,8 +31,10 @@ public class User implements UserDetails {
     private String fullName;
 
     @Email
+    @NotEmpty(message = "Email required")
     private String email;
 
+    @NotEmpty(message = "Password required")
     private String password;
 
     @OneToMany
