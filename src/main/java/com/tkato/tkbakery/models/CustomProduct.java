@@ -1,15 +1,20 @@
 package com.tkato.tkbakery.models;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class CustomProduct {
@@ -28,6 +33,10 @@ public class CustomProduct {
     @NotNull(message = "Product price required in cents (USD)")
     // Price in US cents (e.g. 300 cents = $3.00)
     private Integer price;
+
+    @ManyToMany
+    @JsonIgnore
+    private List<Cart> carts;
 
     private String description;
 
@@ -109,5 +118,15 @@ public class CustomProduct {
 
     public void setPrice(Integer price) {
         this.price = price;
+    }
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = new Date();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = new Date();
     }
 }

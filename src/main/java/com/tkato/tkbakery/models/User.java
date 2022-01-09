@@ -2,11 +2,13 @@ package com.tkato.tkbakery.models;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
@@ -31,6 +33,9 @@ public class User implements UserDetails {
     private String email;
 
     private String password;
+
+    @OneToMany
+    private Set<Cart> carts;
 
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdAt;

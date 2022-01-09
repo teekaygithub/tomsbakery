@@ -40,6 +40,8 @@ public class ProductController {
         return new ResponseEntity<CustomProduct>(product, HttpStatus.OK);
     }
 
+    // UPDATE a single product
+
     @DeleteMapping("/unregister")
     public ResponseEntity<String> removeProduct(@RequestParam String productId) throws StripeException {
         productService.removeByProductId(productId);
