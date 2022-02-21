@@ -1,0 +1,44 @@
+Steps for developing this application
+
+- CRUD routes for Product entity
+- Product entity
+  -- Product page
+  -- DTOs for storing product entity
+- Search for products by name (e.g. react)
+  -- Custom SQL query
+  -- Search bar and re-rendering
+- Search for products by category (e.g. books, mugs)
+- Product detail view
+- Product page - pagination support
+  -- Pageable requests
+  -- Pagination icons (page number, prev/next buttons) (FE)
+- Shopping cart icon
+  -- Show total price, total quantity
+- Shopping cart details page
+  -- Show each item and its quantity + total-price
+  -- Add/remove items buttons
+  -- Button to go to checkout page
+- Checkout form
+  -- Customer details (name, phone number, email)
+  -- Pickup time (ASAP, 30minutes, 1hour)
+  -- Payment information (i.e. credit card details)
+  -- DTO for checkout form (customer detail, pickup time, payment info)
+- Checkout form validation
+  -- Customer
+    --- Requried fields
+    --- Name lengths
+    --- Formats (phone number, email)
+  -- Payment
+    --- Required fields (card number, card name, security code, zip code)
+- Payment success page
+  -- Redirect to this after successful purchase
+  -- Simple thank-you message + promos for more products
+- Save order details to DB
+  -- Only product names and customer details
+  -- Do not store payment info at all, goes to Stripe only
+- Payment: integrate Stripe
+  -- Update payment info section in checkout form with Stripe elements
+  -- Create payment intent
+  -- Confirm payment with client-secret supplied by Stripe
+- Security: integrate Okta
+- HTTPS support
