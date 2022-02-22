@@ -3,6 +3,7 @@ package com.tkato.tkbakery.models;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -40,6 +43,9 @@ public class CustomProduct {
     @NotNull(message = "Product price required in cents (USD)")
     // Price in US cents (e.g. 300 cents = $3.00)
     private BigDecimal unitPrice;
+
+    @ManyToOne
+    private CustomProductCategory category;
 
     @ManyToMany
     @JsonIgnore
@@ -129,5 +135,10 @@ public class CustomProduct {
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
+    }
+
+    @Transient
+    public String getProductId() {
+        return category.getName() + "-" + UUID.randomUUID().toString();
     }
 }

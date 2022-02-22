@@ -19,6 +19,7 @@ import com.stripe.model.Price;
 import com.stripe.model.Product;
 
 @Service
+@Transactional
 public class ProductService {
     
     private final ProductRepository repo;
