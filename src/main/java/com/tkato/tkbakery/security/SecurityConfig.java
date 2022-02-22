@@ -30,9 +30,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/", "index", "/css/*", "/js/*", "/images/*").permitAll()
-            .antMatchers("/api/**").permitAll() // temporary, for development purposes
-            .antMatchers("/users/**").permitAll() // temporary, for development purposes
-            .anyRequest().authenticated();
+            // .antMatchers("/", "index", "/css/*", "/js/*", "/images/*").permitAll()
+            // .antMatchers("/api/**").permitAll() // temporary, for development purposes
+            // .antMatchers("/users/**").permitAll() // temporary, for development purposes
+            // .anyRequest().authenticated();
+            .anyRequest().permitAll();
     }
 }

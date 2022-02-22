@@ -1,5 +1,7 @@
 package com.tkato.tkbakery.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import com.stripe.exception.StripeException;
@@ -10,6 +12,7 @@ import com.tkato.tkbakery.services.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/api/product")
+@RequestMapping("/menu")
 public class ProductController {
 
     private ProductService productService;
@@ -34,10 +37,17 @@ public class ProductController {
         return new ResponseEntity<CustomProduct>(newProduct, HttpStatus.CREATED);
     }
 
-    @GetMapping("/")
-    public ResponseEntity<CustomProduct> getProductById(@RequestParam String productId) throws StripeException {
-        CustomProduct product = productService.findByProductId(productId);
-        return new ResponseEntity<CustomProduct>(product, HttpStatus.OK);
+    // @GetMapping("/")
+    // public ResponseEntity<CustomProduct> getProductById(@RequestParam String productId) throws StripeException {
+    //     CustomProduct product = productService.findByProductId(productId);
+    //     return new ResponseEntity<CustomProduct>(product, HttpStatus.OK);
+    // }
+
+    @GetMapping("")
+    public String menuView(Model model) {
+        List<CustomProduct> items = productService.findAll();
+        model.addAttribute("menuItems", items);
+        return "menu";
     }
 
     // UPDATE a single product

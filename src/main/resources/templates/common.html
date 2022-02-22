@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
+    <head th:fragment="head">
         <title>Tom's Bakery</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -8,14 +8,14 @@
         <script th:src="@{/js/carousel.js}" defer></script>
     </head>
     <body>
-        <header>
+        <header th:fragment="nav-header">
             <div id="header-logo">
                 <a href="/">Tom's Bakery</a>
             </div>
             <nav>
                 <ul>
                     <li>
-                        <a th:href="@{/menu}">Menu</a>
+                        <a href="#">Menu</a>
                     </li>
                     <li>
                         <a href="#">About</a>
@@ -26,21 +26,8 @@
                 </ul>
             </nav>
         </header>
-        <div class="container">
-            <div id="carousel-container">
-                <div class="carousel-slide fade">
-                    <img th:src="@{/images/sourdough.jpg}" />
-                </div>
-                <div class="carousel-slide fade">
-                    <img th:src="@{/images/turtle.jpg}" />
-                </div>
-                <div class="carousel-slide fade">
-                    <img th:src="@{/images/bowls.jpg}" />
-                </div>
-            </div>
-            <div id="featured-pastries-container">
-                <h3 style="text-align:left">Featured Pastries</h3>
-            </div>
+        <div th:fragment="footer">
+            <h3>Footer</h3>
         </div>
     </body>
 </html>

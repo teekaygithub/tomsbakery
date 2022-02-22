@@ -1,67 +1,70 @@
 package com.tkato.tkbakery.models;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 @Entity
+@Table(name = "custom_product")
 public class CustomProduct {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "custom_key")
     private String customKey;
 
+    @Column(name = "custom_price_key")
     private String customPriceKey;
 
+    @Column(name = "name")
     @NotEmpty(message = "Product name required")
     private String name;
 
     @NotNull(message = "Product price required in cents (USD)")
     // Price in US cents (e.g. 300 cents = $3.00)
-    private Integer price;
+    private BigDecimal unitPrice;
 
     @ManyToMany
     @JsonIgnore
     private List<Cart> carts;
 
+    @Column(name = "description")
     private String description;
 
+    @Column(name = "is_active")
     private boolean isActive = true;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "created_at")
+    @CreationTimestamp
     private Date createdAt;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @Column(name = "updated_at")
+    @UpdateTimestamp
     private Date updatedAt;
 
     public Long getId() {
         return id;
     }
 
-    public String getCustomPriceKey() {
-        return customPriceKey;
-    }
-
-    public void setCustomPriceKey(String customPriceKey) {
-        this.customPriceKey = customPriceKey;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getCustomKey() {
@@ -72,32 +75,12 @@ public class CustomProduct {
         this.customKey = customKey;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
+    public String getCustomPriceKey() {
+        return customPriceKey;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public boolean isActive() {
-        return isActive;
-    }
-
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCustomPriceKey(String customPriceKey) {
+        this.customPriceKey = customPriceKey;
     }
 
     public String getName() {
@@ -108,25 +91,43 @@ public class CustomProduct {
         this.name = name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public BigDecimal getUnitPrice() {
+        return unitPrice;
     }
 
-    public Integer getPrice() {
-        return price;
+    public void setUnitPrice(BigDecimal unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
-    public void setPrice(Integer price) {
-        this.price = price;
+    public String getDescription() {
+        return description;
     }
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = new Date();
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    @PreUpdate
-    protected void onUpdate() {
-        this.updatedAt = new Date();
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

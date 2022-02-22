@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
@@ -20,18 +21,22 @@ import com.stripe.model.Product;
 @Service
 public class ProductService {
     
-    private final ProductRepository productRepository;
+    private final ProductRepository repo;
     
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
     public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
+        this.repo = productRepository;
     }
 
     @PostConstruct
     public void init() {
         Stripe.apiKey = stripeSecretKey;
+    }
+
+    public List<CustomProduct> findAll() {
+        return (List<CustomProduct>)repo.findAll();
     }
 
     public CustomProduct registerNewProduct(CustomProduct newProduct) throws StripeException {
@@ -43,19 +48,19 @@ public class ProductService {
         // Second, register a price object with the newly created product
         Map<String, Object> priceparams = new HashMap<>();
         priceparams.put("currency", "usd");
-        priceparams.put("unit_amount", newProduct.getPrice());
+        // priceparams.put("unit_amount", newProduct.getPrice());
         priceparams.put("product", product.getId());
         Price price = Price.create(priceparams);
 
         // Now save in our DB. Be sure to set Stripe's unique ID for the product onto our copy as well.
         newProduct.setCustomKey(product.getId());
         newProduct.setCustomPriceKey(price.getId());
-        return productRepository.save(newProduct);
+        return repo.save(newProduct);
     }
 
     public CustomProduct findByProductId(String id) throws StripeException {
         Product product = Product.retrieve(id);
-        return productRepository.findByCustomKey(product.getId());
+        return repo.findByCustomKey(product.getId());
     }
 
     @Transactional
@@ -68,6 +73,6 @@ public class ProductService {
         params.put("active", false);
         Product updatedProduct = product.update(params);
 
-        productRepository.deleteByCustomKey(id);
+        repo.deleteByCustomKey(id);
     }
 }

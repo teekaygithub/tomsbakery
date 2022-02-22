@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="common :: head"></head>
+    <body>
+        <div th:replace="common :: nav-header"></div>
+        <h3>Menu</h3>
+        <div>
+            <div th:each="item : ${menuItems}">
+                <p th:text="${item.name}"></p>
+            </div>
+        </div>
+        <div th:replace="common :: footer"></div>
+    </body>
+</html>
