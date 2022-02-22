@@ -2,7 +2,7 @@ Steps for developing this application
 
 - CRUD routes for Product entity
 - Product entity
-  -- Product page
+  -- Menu page
   -- DTOs for storing product entity
 - Search for products by name (e.g. react)
   -- Custom SQL query
