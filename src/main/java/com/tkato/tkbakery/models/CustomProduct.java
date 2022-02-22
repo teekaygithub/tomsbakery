@@ -36,7 +36,7 @@ public class CustomProduct {
     @Column(name = "custom_price_key")
     private String customPriceKey;
 
-    @Column(name = "name")
+    @Column(name = "name", unique = true)
     @NotEmpty(message = "Product name required")
     private String name;
 
