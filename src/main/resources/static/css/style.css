@@ -98,3 +98,35 @@ header {
     height: 200px;
     margin: 20px;
 }
+
+.footer {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    margin-top: 4rem;
+    background-color:rgb(230, 136, 15);
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.footer-section {
+    width: 25%;
+    padding: 0 1rem;
+}
+
+.footer-section * {
+    text-align: left;
+}
+
+#footer-social {
+    width: 25%;
+}
+
+.footer-social-icons {
+    margin-right: 1rem;
+}
+
+.footer-social-icons:hover {
+    color: #93a603;
+}

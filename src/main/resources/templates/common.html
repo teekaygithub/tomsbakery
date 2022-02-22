@@ -1,34 +1,49 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:fragment="head">
-        <title>Tom's Bakery</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <link rel="stylesheet" th:href="@{/css/style.css}" >
-        <link rel="stylesheet" th:href="@{/css/menu.css}" >
-        <script th:src="@{/js/carousel.js}" defer></script>
-    </head>
-    <body>
-        <header th:fragment="nav-header">
-            <div id="header-logo">
-                <a href="/">Tom's Bakery</a>
-            </div>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#">Menu</a>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact Us</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <div th:fragment="footer">
-            <h3>Footer</h3>
+
+<head th:fragment="head">
+    <title>Tom's Bakery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script th:src="@{/js/carousel.js}" defer></script>
+</head>
+
+<body>
+    <header th:fragment="nav-header">
+        <div id="header-logo">
+            <a href="/">Tom's Bakery</a>
         </div>
-    </body>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">Menu</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <div th:fragment="footer" class="footer">
+        <div class="footer-section">
+            <p>Thank you for checking out Tom's Bakery!</p>
+        </div>
+        <div class="footer-section">
+            <p>Social Links</p>
+            <div>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+
 </html>
