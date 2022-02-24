@@ -28,6 +28,17 @@
                 <li>
                     <a href="#">Contact Us</a>
                 </li>
+                <li>
+                    <div>
+                        <!-- TODO: Make shopping cart count responsive instead of hard-coded -->
+                        <a th:href="@{/cart}" class="flex-container">
+                            <i class="fa-solid fa-cart-shopping" ></i>
+                            <div class="cart-count">
+                                10
+                            </div>
+                        </a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
@@ -36,7 +47,7 @@
             <p>Thank you for checking out Tom's Bakery!</p>
         </div>
         <div class="footer-section">
-            <p>Social Links</p>
+            <h3>Social Links</h3>
             <div>
                 <a href="#" class="footer-social-icons"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#" class="footer-social-icons"><i class="fa-brands fa-tiktok"></i></a>

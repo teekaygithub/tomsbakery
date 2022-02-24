@@ -19,6 +19,48 @@
             </div>
             <div id="featured-pastries-container">
                 <h1 style="text-align:left">Featured Pastries</h1>
+                <!-- TODO: Fragment for featured items -->
+                <div class="flex-container" style="justify-content: space-between;">
+
+                    <div class="menu-card">
+                        <div class="image-container">
+                            <a href="">
+                                <img th:src="@{/images/turtle.jpg}" class="menu-img">
+                            </a>
+                        </div>
+                        <div class="item-details">
+                            <p>Bread</p>
+                            <p>$2.99</p>
+                            <button class="menu-button">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="image-container">
+                            <a href="">
+                                <img th:src="@{/images/turtle.jpg}" class="menu-img">
+                            </a>
+                        </div>
+                        <div class="item-details">
+                            <p>Bread</p>
+                            <p>$2.99</p>
+                            <button class="menu-button">Add to Cart</button>
+                        </div>
+                    </div>
+
+                    <div class="menu-card">
+                        <div class="image-container">
+                            <a href="">
+                                <img th:src="@{/images/turtle.jpg}" class="menu-img">
+                            </a>
+                        </div>
+                        <div class="item-details">
+                            <p>Bread</p>
+                            <p>$2.99</p>
+                            <button class="menu-button">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div th:replace="common :: footer"></div>
