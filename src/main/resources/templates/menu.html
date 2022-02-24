@@ -9,14 +9,13 @@
     <div id="menu-container">
         <div th:each="item : ${menuItems}" class="menu-card">
             <div class="image-container">
-                <a href="#">
+                <a th:href="@{'/menu/products/' + ${item.id}}">
                     <img th:src="@{/images/turtle.jpg}" class="menu-img">
                 </a>
             </div>
             <div class="item-details">
                 <p th:text="${item.name}"></p>
                 <p>$[[${item.unitPrice}]]</p>
-                <p th:text="${item.productId}"></p>
                 <button class="menu-button">Add to Cart</button>
             </div>
         </div>

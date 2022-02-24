@@ -4,12 +4,15 @@
 
 body {
     font-family: arial;
-    font-size: 1rem;
     line-height: 1.5;
     font-style: normal;
     color: rgb(230, 136, 15);
     text-align: center;
     margin: 0 auto;
+}
+
+h1 {
+    font-size: 2rem;
 }
 
 ul {
@@ -30,6 +33,12 @@ img {
     width: 100%;
     max-height: 700px;
     object-fit: cover;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 /* NAVIGATION HEADER */

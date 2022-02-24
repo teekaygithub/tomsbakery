@@ -64,6 +64,10 @@ public class ProductService {
         return repo.findByCustomKey(product.getId());
     }
 
+    public CustomProduct findByProductId(Long id) {
+        return repo.findById(id).get();
+    }
+
     @Transactional
     public void removeByProductId(String id) throws StripeException {
         // Stripe API does not support deletion of a product if there is a price-object associated

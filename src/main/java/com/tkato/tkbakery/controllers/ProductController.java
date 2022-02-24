@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,13 @@ public class ProductController {
         List<CustomProduct> items = productService.findAll();
         model.addAttribute("menuItems", items);
         return "menu";
+    }
+
+    @GetMapping("/products/{id}")
+    public String itemDetailView(@PathVariable(name = "id") Long id, Model model) {
+        CustomProduct item = productService.findByProductId(id);
+        model.addAttribute("item", item);
+        return "itemDetail";
     }
 
     // UPDATE a single product
