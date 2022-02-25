@@ -7,13 +7,18 @@
     <div th:replace="common :: nav-header"></div>
 
     <!-- TODO: Show each item in shopping Cart -->
+    <div id="cart-hasitem">
+    </div>
+
     <!-- TODO: Show shopping cart empty only if cart item quantity is zero -->
-    <h1 style="margin-top:5rem;">Your Shopping Cart</h1>
-    <h3 style="margin-top:5rem;">Your cart is empty</h3>
-    <a th:href="@{/menu}">
-        <button class="menu-button" style="font-size:2rem;margin-top:2rem;">See our menu!</button>
-    </a>
-    
+    <div id="cart-empty">
+        <h1 style="margin-top:5rem;">Your Shopping Cart</h1>
+        <h3 style="margin-top:5rem;">Your cart is empty</h3>
+        <a th:href="@{/menu}">
+            <button class="menu-button" style="font-size:2rem;margin-top:2rem;">See our menu!</button>
+        </a>
+    </div>
+
     <div th:replace="common :: footer"></div>
 </body>
 
