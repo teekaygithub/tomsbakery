@@ -7,16 +7,16 @@
     <div th:replace="common :: nav-header"></div>
     <h3>Menu</h3>
     <div id="menu-container">
-        <div th:each="item : ${menuItems}" class="menu-card">
+        <div th:each="item : ${menuItems}" class="menu-card" th:id="product- + ${item.id}">
             <div class="image-container">
                 <a th:href="@{'/menu/products/' + ${item.id}}">
-                    <img th:src="@{/images/turtle.jpg}" class="menu-img">
+                    <img th:src="@{/images/turtle.jpg}" class="menu-img" th:id="item-image- + ${item.id}">
                 </a>
             </div>
             <div class="item-details">
-                <p th:text="${item.name}"></p>
-                <p>$[[${item.unitPrice}]]</p>
-                <button class="menu-button cart-button">Add to Cart</button>
+                <p th:text="${item.name}" th:id="item-name- + ${item.id}"></p>
+                <p th:id="item-price- + ${item.id}">$[[${item.unitPrice}]]</p>
+                <button class="menu-button cart-button" th:id="cart-button- + ${item.id}">Add to Cart</button>
             </div>
         </div>
     </div>
