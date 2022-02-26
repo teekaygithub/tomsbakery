@@ -22,8 +22,14 @@ $(document).ready(function () {
     }
 
     // ============================
-    // Add a menu item to cart
+    // Register event handlers
     // ============================
+    addToCart();
+    removeFromCart();
+    
+}); // end document ready
+
+function addToCart() {
     $(".cart-button").on("click", function () {
 
         // Cart details
@@ -76,10 +82,9 @@ $(document).ready(function () {
 
         localStorage.setItem('cart-items', JSON.stringify(cartItems));
     });
+}
 
-    // ============================
-    // Remove item from shopping cart
-    // ============================
+function removeFromCart() {
     $(".cart-item-remove").on("click", function () {
         console.log('Remove button clicked');
 
@@ -115,4 +120,4 @@ $(document).ready(function () {
             $(".cart-count").text(modifiedCart.totalQuantity);
         }
     });
-}); // end document ready
+}
