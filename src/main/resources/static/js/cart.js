@@ -6,12 +6,14 @@ $(document).ready(function () {
         $(".cart-count").text(temp.totalQuantity);
         $("#cart-empty").remove();
 
+        // Populate the shopping cart page (/cart)
         let cartItemsList = JSON.parse(localStorage.getItem('cart-items'));
         cartItemsList.forEach((item) => {
-            let name = "<div>" + item.name + "</div>";
-            let price = "<div>" + item.price + "</div>";
-            let image = "<img src=\"" + item.imageUrl + "\">";
-            let prod = "<div>" + image + name + price + "</div>";
+            let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
+            let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
+            let buttons = "<div class=\"cart-item-buttons\"><input type=\"number\" min=\"1\" max=\"6\"><button>Update</button><button>Remove</button></div>"
+            let price = "<div class=\"cart-item-price-qty\"><p>" + item.price + "</p><p>" + item.quantity + " x " + item.price + "</p></div>";
+            let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.ID + "\">" + image + name + buttons +  price + "</div>";
             $("#cart-hasitem").append(prod);
         });
     } else {
@@ -20,6 +22,7 @@ $(document).ready(function () {
     }
 });
 
+// Add a menu item to cart
 $(".cart-button").on("click", function () {
 
     // Cart details
@@ -46,6 +49,7 @@ $(".cart-button").on("click", function () {
     var id = temp[temp.length - 1];
 
     var product = {
+        ID: id,
         name: $("#item-name-" + id).text(),
         price: $("#item-price-" + id).text(),
         imageUrl: $("#item-image-" + id).attr("src"),
