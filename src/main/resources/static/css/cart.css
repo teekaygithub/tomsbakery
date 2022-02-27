@@ -67,8 +67,6 @@
 }
 
 .cart-button {
-    position: absolute;
-    /* right: 0; */
     border-radius: 0;
     padding: 1rem 2rem;
     background-color: rgba(255, 145, 0, 0.904);
