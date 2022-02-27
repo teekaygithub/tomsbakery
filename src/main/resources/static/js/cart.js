@@ -88,6 +88,10 @@ function removeFromCart() {
     $(".cart-item-remove").on("click", function () {
         console.log('Remove button clicked');
 
+        if (confirm("Are you sure you want to remove this item?") == false) {
+            return;
+        }
+
         // Remove the element in shopping cart DOM
         let deletedItem = $(this).parent().parent();
         let deletedId = deletedItem.attr("id").split("-").slice(-1)[0];
