@@ -16,7 +16,6 @@
 
 .menu-img {
     width: 100%;
-    padding: 0.5rem;
 }
 
 .item-details {
@@ -34,4 +33,10 @@
 
 .menu-button:hover {
     background-color: rgba(64, 138, 64, 0.876);
+}
+
+@media screen and (max-width: 480px) {
+    .menu-card {
+        width: 100%;
+    }
 }

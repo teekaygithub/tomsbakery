@@ -11,10 +11,12 @@
     <link rel="stylesheet" th:href="@{/css/cart.css}">
     <link rel="stylesheet" th:href="@{/css/checkout.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script th:src="@{/js/carousel.js}" defer></script>
     <script th:src="@{/js/cart.js}" defer></script>
     <script th:src="@{/js/checkout.js}"></script>
+    <script th:src="@{/js/navigation.js}"></script>
     <script src="https://js.stripe.com/v3/"></script>
 </head>
 
@@ -23,7 +25,7 @@
         <div id="header-logo">
             <a href="/">Tom's Bakery</a>
         </div>
-        <nav>
+        <nav id="nav-lg">
             <ul>
                 <li>
                     <a th:href="@{/menu}">Menu</a>
@@ -36,9 +38,8 @@
                 </li>
                 <li>
                     <div>
-                        <!-- TODO: Make shopping cart count responsive instead of hard-coded -->
                         <a th:href="@{/cart}" class="flex-container">
-                            <i class="fa-solid fa-cart-shopping" ></i>
+                            <i class="fa-solid fa-cart-shopping"></i>
                             <div class="cart-count">
                                 0
                             </div>
@@ -47,6 +48,17 @@
                 </li>
             </ul>
         </nav>
+        <div id="nav-small">
+            <a th:href="@{/cart}">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <i class="fa-solid fa-bars" id="nav-collapsible"></i>
+            <div id="nav-menu-small">
+                <a th:href="@{/menu}">Menu</a>
+                <a href="#">About</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
     </header>
     <div th:fragment="footer" class="footer">
         <div class="footer-section">
