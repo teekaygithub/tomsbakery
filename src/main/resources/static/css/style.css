@@ -24,6 +24,20 @@ li {
     margin-right: 1rem;
 }
 
+button {
+    border-radius: 0;
+    padding: 1rem 2rem;
+    background-color: rgba(255, 145, 0, 0.904);
+    box-shadow: none;
+    color: white;
+    font-weight:600;
+    transition: background-color 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: rgba(64, 138, 64, 0.876);
+}
+
 a {
     text-decoration: none;
     color: inherit;
