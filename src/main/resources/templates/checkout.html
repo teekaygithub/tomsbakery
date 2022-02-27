@@ -1,48 +1,54 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Checkout</title>
-        <link rel="stylesheet" th:href="@{/css/style.css}" />
-        <link rel="stylesheet" th:href="@{/css/cart.css}" />
-        <script src="https://js.stripe.com/v3/"></script>
-    </head>
-    <body>
-        <header>
-            <div id="header-logo">
-                <a href="/">Tom's Bakery</a>
+
+<head th:replace="common :: head"></head>
+
+<body>
+    <header th:replace="common :: nav-header"></header>
+
+    <div id="checkout-container">
+        <form method="POST" action="/checkout" id="checkoutForm">
+            <div class="form-section">
+                <h3>Customer</h3>
+
+                <div class="form-group">
+                    <div>
+                        <label>Your Name</label>
+                    </div>
+                    <div>
+                        <input type="text" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Email</label>
+                    </div>
+                    <div>
+                        <input type="email" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label>Phone Number</label>
+                    </div>
+                    <div>
+                        <input type="tel" required patter="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                    </div>
+                </div>
             </div>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#">Menu</a>
-                    </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#">Contact Us</a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <div class="cart-container">
-            <h2>Your Shopping Cart</h2>
-            <form action="/api/checkout/createsession" method="POST">
-                <div class="cart-item">
-                    <span>Matcha Bread</span>
-                    <span>Qty: 1</span>
-                    <span>$2.99</span>
-                </div>
-                <div class="cart-item">
-                    <span>Taro Bread</span>
-                    <span>Qty: 1</span>
-                    <span>$2.99</span>
-                </div>
-                <div class="cart-button-container">
-                    <h2>Subtotal: $5.89</h2>
-                    <button type="submit" class="cart-button">Checkout</button>
-                </div>
-            </form>
-        </div>
-    </body>
+
+            <div class="form-section">
+                <h3>Payment Information</h3>
+                <div id="card-element"></div>
+            </div>
+
+            <input type="submit">
+        </form>
+    </div>
+
+    <div th:replace="common :: footer"></div>
+</body>
+
 </html>

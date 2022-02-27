@@ -1,0 +1,28 @@
+#checkout-container {
+    width: 50vw;
+    margin: inherit;
+    border:1px solid rgba(0,0,0,0.5);
+    border-radius: .5rem;
+    padding: 1rem 2rem;
+    background-color: rgba(240,240,240,0.5);
+}
+
+.form-section {
+    margin-bottom: 5rem;
+    text-align: left;
+}
+
+.form-group {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.form-group div {
+    /* padding: 0.3rem; */
+}
+
+.form-group input {
+    width: 100%;
+}

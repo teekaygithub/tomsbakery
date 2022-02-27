@@ -137,7 +137,7 @@ function removeFromCart() {
 // Adds the subtotal and checkout button for the /cart page
 function totalsAndCheckoutButton(subtotal) {
     let totals = "<div id=\"subtotal\">Your total: $" + subtotal.toString() + "</div>"
-    let checkoutBtn = "<div><a href=\"#\"><button>Checkout</button></a></div>"
+    let checkoutBtn = "<div><a href=\"/checkout\"><button>Checkout</button></a></div>"
     let component = "<div class=\"cart-checkout-container\">" + totals + checkoutBtn + "</div>";
     $("#cart-hasitem").append(component);
 }
