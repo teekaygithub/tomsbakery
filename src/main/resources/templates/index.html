@@ -22,42 +22,16 @@
                 <!-- TODO: Fragment for featured items -->
                 <div class="flex-container" style="justify-content: space-between;">
 
-                    <div class="menu-card">
+                    <div th:each="item : ${featured}" class="menu-card">
                         <div class="image-container">
-                            <a href="">
-                                <img th:src="@{/images/turtle.jpg}" class="menu-img">
+                            <a th:href="@{'/menu/products/' + ${item.id}}">
+                                <img th:src="@{'/images/' + ${item.imageFile}}" class="menu-img" th:id="item-image- + ${item.id}">
                             </a>
                         </div>
                         <div class="item-details">
-                            <p>Bread</p>
-                            <p>$2.99</p>
-                            <button class="menu-button">Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div class="menu-card">
-                        <div class="image-container">
-                            <a href="">
-                                <img th:src="@{/images/turtle.jpg}" class="menu-img">
-                            </a>
-                        </div>
-                        <div class="item-details">
-                            <p>Bread</p>
-                            <p>$2.99</p>
-                            <button class="menu-button">Add to Cart</button>
-                        </div>
-                    </div>
-
-                    <div class="menu-card">
-                        <div class="image-container">
-                            <a href="">
-                                <img th:src="@{/images/turtle.jpg}" class="menu-img">
-                            </a>
-                        </div>
-                        <div class="item-details">
-                            <p>Bread</p>
-                            <p>$2.99</p>
-                            <button class="menu-button">Add to Cart</button>
+                            <p th:id="item-name- + ${item.id}">[[${item.name}]]</p>
+                            <p th:id="item-price- + ${item.id}">[[${item.unitPrice}]]</p>
+                            <button class="menu-button cart-button" th:id="cart-button- + ${item.id}">Add to Cart</button>
                         </div>
                     </div>
                 </div>

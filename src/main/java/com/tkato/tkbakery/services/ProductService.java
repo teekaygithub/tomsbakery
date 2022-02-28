@@ -4,6 +4,10 @@ import com.tkato.tkbakery.models.CustomProduct;
 import com.tkato.tkbakery.repositories.ProductRepository;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -38,6 +42,11 @@ public class ProductService {
 
     public List<CustomProduct> findAll() {
         return (List<CustomProduct>)repo.findAll();
+    }
+
+    public Page<CustomProduct> findTop3() {
+        Pageable pageable = PageRequest.of(0, 3);
+        return repo.findAll(pageable);
     }
 
     public CustomProduct registerNewProduct(CustomProduct newProduct) throws StripeException {
