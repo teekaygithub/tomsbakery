@@ -10,7 +10,7 @@
         <div th:each="item : ${menuItems}" class="menu-card" th:id="product- + ${item.id}">
             <div class="image-container">
                 <a th:href="@{'/menu/products/' + ${item.id}}">
-                    <img th:src="@{/images/turtle.jpg}" class="menu-img" th:id="item-image- + ${item.id}">
+                    <img th:src="@{'/images/' + ${item.imageFile}}" class="menu-img" th:id="item-image- + ${item.id}">
                 </a>
             </div>
             <div class="item-details">

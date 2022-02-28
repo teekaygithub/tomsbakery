@@ -8,6 +8,12 @@
     margin-right: 3rem;
 }
 
+.item-image-container img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
 .item-description-container {
     width: 30%;
     text-align: left;
@@ -19,4 +25,27 @@
 
 .description-field {
     margin-bottom: 1rem;
+}
+
+.description-field input, button {
+    width: 45%;
+}
+
+@media screen and (max-width: 480px) {
+    .item-details-container {
+        flex-direction: column;
+    }
+
+    .item-image-container {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .item-description-container {
+        width: 100%;
+    }
+
+    .description-field input, button {
+        width: 100%;
+    }
 }

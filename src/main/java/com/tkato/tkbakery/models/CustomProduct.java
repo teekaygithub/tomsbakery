@@ -44,6 +44,9 @@ public class CustomProduct {
     // Price in US cents (e.g. 300 cents = $3.00)
     private BigDecimal unitPrice;
 
+    @Column(name="image_file")
+    private String imageFile;
+
     @ManyToOne
     private CustomProductCategory category;
 
@@ -103,6 +106,14 @@ public class CustomProduct {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+
+    public String getImageFile() {
+        return imageFile;
+    }
+
+    public void setImageFile(String imageFile) {
+        this.imageFile = imageFile;
     }
 
     public String getDescription() {
