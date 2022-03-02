@@ -8,10 +8,21 @@ public class CheckoutData {
     
     private String phoneNumber;
 
-    public CheckoutData(String name, String email, String phoneNumber) {
+    private Long subTotal;
+
+    public CheckoutData(String name, String email, String phoneNumber, Long subTotal) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.subTotal = subTotal;
+    }
+
+    public Long getSubTotal() {
+        return subTotal;
+    }
+
+    public void setSubTotal(Long subTotal) {
+        this.subTotal = subTotal;
     }
 
     public String getName() {

@@ -23,14 +23,15 @@ public class CheckoutRestController {
     @PostMapping("/api/payment-intent")
     public ResponseEntity<CreatePaymentResponse> createPaymentIntent(@RequestBody CheckoutData checkoutData) throws StripeException {
         logger.info(
-            String.format("Customer name: %s, email: %s, phone: %s", 
+            String.format("Customer name: %s, email: %s, phone: %s, subtotal: %d", 
                 checkoutData.getName(),
                 checkoutData.getEmail(),
-                checkoutData.getPhoneNumber()
+                checkoutData.getPhoneNumber(),
+                checkoutData.getSubTotal()
                 ));
         PaymentIntentCreateParams params = new PaymentIntentCreateParams.Builder()
             .setCurrency("usd")
-            .setAmount(4200L )
+            .setAmount(checkoutData.getSubTotal())
             .build();
 
         PaymentIntent intent = PaymentIntent.create(params);

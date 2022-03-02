@@ -8,6 +8,12 @@ $(document).ready(function () {
 
     cardElement.mount("#card-element");
 
+    // Populate the subtotals
+
+    const itemList = JSON.parse(localStorage.getItem('cart-items'));
+    const subTotal = computeSubtotal(itemList);
+    $('#subtotal-amount').text("Subtotal: $" + subTotal.toString());
+
     // FORM SUBMISSION
     $('#checkoutForm').submit((event) => {
         // TODO: delete once server is ready to accept form submission
@@ -21,10 +27,13 @@ $(document).ready(function () {
         // TODO: Integrate stripe card-element as described here: https://stripe.com/docs/payments/card-element
 
         // Corresponds with 'CheckoutData' DTO
+
+        let subTotalAmount = parseInt(computeSubtotal(JSON.parse(localStorage.getItem('cart-items')))*100);
         const purchase = {
             name: $("#customer-name").val(),
             email: $("#customer-email").val(),
-            phoneNumber: $("#customer-phone").val()
+            phoneNumber: $("#customer-phone").val(),
+            subTotal: subTotalAmount.toString(),
         }
 
         console.log('Purchase object: ' + purchase);
