@@ -7,21 +7,21 @@
     <div th:replace="common :: nav-header"></div>
     <div class="flex-container item-details-container">
         <div class="item-image-container">
-            <img th:src="@{'/images/' + ${item.imageFile}}">
+            <img th:src="@{'/images/' + ${item.imageFile}}" th:id="item-image- + ${item.id}">
         </div>
         <div class="item-description-container">
             <div class="description-field">
-                <h1>[[${item.name}]]</h1>
+                <h1 th:id="item-name- + ${item.id}">[[${item.name}]]</h1>
             </div>
             <div class="description-field">
-                <h3>$[[${item.unitPrice}]]</h3>
+                <h3 th:id="item-price- + ${item.id}">$[[${item.unitPrice}]]</h3>
             </div>
             <div class="description-field">
                 <p>Qty: (Max 6 per order)</p>
                 <input type="number" placeholder="1" min="1" max="6" style="display:block;padding:1rem;">
             </div>
             <div class="description-field">
-                <button class="menu-button">Add to Cart</i></button>
+                <button class="menu-button cart-button" th:id="cart-button- + ${item.id}">Add to Cart</i></button>
             </div>
             <p style="margin-top: 3rem;font-size:1.25rem;">[[${item.description}]]</p>
         </div>

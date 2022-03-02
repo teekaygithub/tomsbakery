@@ -50,6 +50,21 @@ img {
     object-fit: contain;
 }
 
+input[type="submit"] {
+    background-color:rgb(230, 136, 15);
+    color: white;
+    padding: 0.75rem 5rem;
+    border-radius: 0.5rem;
+    font-size: 1.5rem;
+    transition: all 0.5s ease;
+}
+
+input[type="submit"]:hover {
+    background-color:rgba(64, 138, 64, 0.876);
+    padding-left: 6rem;
+    padding-right: 6rem;
+}
+
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -199,6 +214,15 @@ header {
 
     .container {
         width: 90vw;
+    }
+
+    input[type="submit"] {
+        padding: 0.75rem 3rem;
+    }
+
+    input[type="submit"]:hover {
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
     }
 
     header {
