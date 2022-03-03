@@ -76,7 +76,7 @@ $(document).ready(function () {
                     })
                     .then(res => {
                         console.log(res);
-                        window.location.href = "http://localhost:8080/success";
+                        window.location.href = window.location.origin  + "/success";
                     })
                     .catch(err => {
                         console.log(err)
