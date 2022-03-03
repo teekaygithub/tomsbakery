@@ -48,4 +48,9 @@ public class CheckoutData {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    @Override
+    public String toString() {
+        return String.format("CheckoutData email: %s, total: %s", email, subTotal.toString());
+    }
 }

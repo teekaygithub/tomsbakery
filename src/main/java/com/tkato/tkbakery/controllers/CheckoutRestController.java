@@ -39,4 +39,14 @@ public class CheckoutRestController {
         CreatePaymentResponse res = new CreatePaymentResponse(intent.getClientSecret());
         return new ResponseEntity<CreatePaymentResponse>(res, HttpStatus.OK);
     }
+
+    @PostMapping("/orderComplete")
+    public ResponseEntity<String> orderComplete(
+        @RequestBody CheckoutData checkoutData) {
+        logger.info(checkoutData.toString());
+
+        // TODO: Save order details to DB
+        // TODO: Generate unique ID for order
+        return new ResponseEntity<String>("order completed successfully", HttpStatus.OK);
+    }
 }

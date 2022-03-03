@@ -150,3 +150,9 @@ function computeSubtotal(itemList) {
 
     return subtotal.toFixed(2);
 }
+
+function clearCart() {
+    localStorage.removeItem('cart');
+    localStorage.removeItem('cart-items');
+    $(".cart-count").text(0);
+}

@@ -64,9 +64,23 @@ $(document).ready(function () {
                     console.log("Payment confirmation successful.");
                     console.log(result.paymentIntent.id);
 
-                    // TODO: Save the order details (minus payment card details) to our DB
+                    clearCart();
 
-                    // TODO:Clear the cart and redirect to a confirmation page
+                    // TODO: Save the order details (minus payment card details) to our DB
+                    fetch("/ordercomplete", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(purchase),
+                    })
+                    .then(res => {
+                        console.log(res);
+                        window.location.href = "http://localhost:8080/success";
+                    })
+                    .catch(err => {
+                        console.log(err)
+                    });
                 }
             });
         }); // end fetch /api/payment-intent
