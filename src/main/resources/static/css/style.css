@@ -141,16 +141,16 @@ header {
 
 .carousel-slide img {
     width: 100%;
-    height: auto;
+    height: 500px;
 }
 
 .fade {
     animation-name: fade;
-    animation-duration: 1.5s;
+    animation-duration: 3s;
 }
 
 @keyframes fade {
-    from {opacity: 0.4;}
+    from {opacity: 0.1;}
     to {opacity: 1;}
 }
 
