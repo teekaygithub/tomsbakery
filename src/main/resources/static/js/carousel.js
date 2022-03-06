@@ -1,13 +1,26 @@
-let slideIndex = 0;
-showSlides();
+$(document).ready(() => {
+    let imgCount = $(".carousel-slide-img").length;
+    console.log("carousel img count: " + imgCount.toString());
+    showSlides(imgCount);
+});
 
-function showSlides() {
-    var i;
-    var slides = document.getElementsByClassName("carousel-slide");
-    for (i=0; i<slides.length; i++) {
-        slides[i].style.display="none";
-    }
-    slideIndex = (slideIndex+1)%slides.length;
-    slides[slideIndex].style.display="block";
-    setTimeout(showSlides, 5000);
+function showSlides(imgCount) {
+
+    const imgWidth = 700;
+
+    $(".next").on("click", () => {
+        let offset = parseInt($("#carousel-slides").css("transform").split(',')[4]);
+        let newOffset = (offset - 700) <= -1 * imgWidth * imgCount ? offset : offset - 700;
+        let translate = "translateX(" + newOffset.toString() + "px)";
+        
+        $("#carousel-slides").css("transform", translate);
+    });
+
+    $(".prev").on("click", () => {
+        let offset = parseInt($("#carousel-slides").css("transform").split(',')[4]);
+        let newOffset = (offset + 700) > 0 ? offset : offset + 700;
+        let translate = "translateX(" + newOffset.toString() + "px)";
+
+        $("#carousel-slides").css("transform", translate);
+    });
 }
