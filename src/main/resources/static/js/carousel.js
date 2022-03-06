@@ -1,27 +1,28 @@
 $(document).ready(() => {
     let imgCount = $(".carousel-slide-img").length;
-    console.log("carousel img count: " + imgCount.toString());
-    console.log("Screen width: " + window.outerWidth);
-    showSlides(imgCount);
+    let imgWidth = parseInt($(".carousel-slide-img").width());
+    let imgOffsets = [];
+    for (let i = 0; i < imgCount; i++) {
+        imgOffsets.push(-imgWidth * i);
+    }
+
+    showSlides(imgOffsets);
 });
 
-function showSlides(imgCount) {
+function showSlides(imgOffsets) {
 
-    imgWidth = parseInt($(".carousel-slide-img").width());
-    console.log("img width: " + imgWidth);
+    let offset = 0;
 
     $(".next").on("click", () => {
-        let offset = parseInt($("#carousel-slides").css("transform").split(',')[4]);
-        let newOffset = (offset - imgWidth) <= -1 * imgWidth * imgCount ? offset : offset - imgWidth;
-        let translate = "translateX(" + newOffset.toString() + "px)";
+        offset = (offset + 1 >= imgOffsets.length) ? 0 : offset + 1;
+        let translate = "translateX(" + imgOffsets[offset].toString() + "px)";
         
         $("#carousel-slides").css("transform", translate);
     });
 
     $(".prev").on("click", () => {
-        let offset = parseInt($("#carousel-slides").css("transform").split(',')[4]);
-        let newOffset = (offset + imgWidth) > 0 ? offset : offset + imgWidth;
-        let translate = "translateX(" + newOffset.toString() + "px)";
+        offset = (offset - 1 < 0) ? imgOffsets.length-1 : offset - 1;
+        let translate = "translateX(" + imgOffsets[offset].toString() + "px)";
 
         $("#carousel-slides").css("transform", translate);
     });
