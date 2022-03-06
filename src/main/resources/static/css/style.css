@@ -260,6 +260,10 @@ header {
         display: block;
     }
 
+    #carousel-container {
+        width: 100%;
+    }
+
     .footer {
         flex-direction: column;
     }
