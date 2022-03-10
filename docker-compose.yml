@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  mydb:
+    container_name: mydb
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=${SQL_TK_PW}
+    volumes:
+      - tb-mount:/var/lib/mysql
+    networks:
+      - tbnw
+
+  tomsbakery:
+    build: .
+    container_name: toms
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    networks:
+      - tbnw
+
+volumes:
+  tb-mount:
+
+networks:
+  tbnw:
