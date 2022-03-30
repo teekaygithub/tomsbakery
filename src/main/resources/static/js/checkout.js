@@ -57,6 +57,8 @@ $(document).ready(function () {
                 if (result.error) {
                     // TODO: Implement alerts for payment confirmation failure
                     console.log("Confirm payment error: " + result.error.message);
+                    $("#checkout-button").prop('disabled',false);
+                    $(".fa-spinner").remove();
                 } else {
                     console.log("Payment confirmation successful.");
                     console.log(result.paymentIntent.id);
