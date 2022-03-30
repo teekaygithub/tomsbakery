@@ -30,6 +30,29 @@
     font-size: 1rem;
 }
 
+#checkout-button-container {
+    width: 100%;
+}
+
+#checkout-button {
+    width: inherit;
+    font-size: 1.25rem;
+}
+
+#checkout-button:hover {
+    background-color:rgba(64, 138, 64, 0.876);
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+#checkout-button:disabled {
+    opacity: 0.5;
+}
+
+i.fa-spinner {
+    margin-left: 0.5rem;
+}
+
 @media screen and (max-width: 480px) {
     #checkout-container {
         width: 95vw;

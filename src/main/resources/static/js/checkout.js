@@ -16,15 +16,12 @@ $(document).ready(function () {
 
     // FORM SUBMISSION
     $('#checkoutForm').submit((event) => {
-        // TODO: delete once server is ready to accept form submission
         event.preventDefault();
         console.log("Submitting form...");
 
-        // TODO: Disable submit button until server can process submission
-
-        // TODO: Display spinner icon
-
-        // TODO: Integrate stripe card-element as described here: https://stripe.com/docs/payments/card-element
+        // Disable checkout button and indicate loading with spinner
+        $('#checkout-button').prop('disabled', true);        
+        $('#checkout-button').append('<i class="fas fa-spinner fa-spin"></i>')
 
         // Corresponds with 'CheckoutData' DTO
 
