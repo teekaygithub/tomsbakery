@@ -31,6 +31,7 @@ $(document).ready(function () {
             email: $("#customer-email").val(),
             phoneNumber: $("#customer-phone").val(),
             subTotal: subTotalAmount.toString(),
+            orderItems: itemList
         }
 
         console.log('Purchase object: ' + purchase);
@@ -66,7 +67,7 @@ $(document).ready(function () {
                     clearCart();
 
                     // TODO: Save the order details (minus payment card details) to our DB
-                    fetch("/ordercomplete", {
+                    fetch("/orderComplete", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

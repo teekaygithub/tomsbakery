@@ -5,6 +5,7 @@ import com.stripe.model.PaymentIntent;
 import com.stripe.param.PaymentIntentCreateParams;
 import com.tkato.tkbakery.dto.CheckoutData;
 import com.tkato.tkbakery.dto.CreatePaymentResponse;
+import com.tkato.tkbakery.services.CheckoutService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CheckoutRestController {
 
     private Logger logger = LoggerFactory.getLogger(CheckoutRestController.class);
+
+    private CheckoutService service;
+
+    public CheckoutRestController(CheckoutService service) {
+        this.service = service;
+    }
     
     // TODO: Add exception handling for StripeException
     @PostMapping("/api/payment-intent")
@@ -45,8 +52,8 @@ public class CheckoutRestController {
         @RequestBody CheckoutData checkoutData) {
         logger.info(checkoutData.toString());
 
-        // TODO: Save order details to DB
-        // TODO: Generate unique ID for order
-        return new ResponseEntity<String>("order completed successfully", HttpStatus.OK);
+        String orderId = service.orderComplete(checkoutData);
+
+        return new ResponseEntity<String>(String.format("order completed successfully, order ID: %s", orderId), HttpStatus.OK);
     }
 }

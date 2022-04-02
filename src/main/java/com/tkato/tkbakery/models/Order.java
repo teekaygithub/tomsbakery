@@ -95,5 +95,24 @@ public class Order {
     public void setOrderItems(Set<OrderItem> orderItems) {
         this.orderItems = orderItems;
     }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public void add(OrderItem item) {
+        if (item != null) {
+            if (orderItems == null) {
+                orderItems = new HashSet<>();
+            }
+
+            orderItems.add(item);
+            item.setOrder(this);
+        }
+    }
     
 }

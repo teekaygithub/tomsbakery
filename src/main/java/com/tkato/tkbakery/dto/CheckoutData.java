@@ -1,5 +1,10 @@
 package com.tkato.tkbakery.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.tkato.tkbakery.models.OrderItem;
+
 public class CheckoutData {
     
     private String name;
@@ -9,6 +14,8 @@ public class CheckoutData {
     private String phoneNumber;
 
     private Long subTotal;
+
+    private Set<OrderItem> orderItems = new HashSet<>();
 
     public CheckoutData(String name, String email, String phoneNumber, Long subTotal) {
         this.name = name;
@@ -52,5 +59,13 @@ public class CheckoutData {
     @Override
     public String toString() {
         return String.format("CheckoutData email: %s, total: %s", email, subTotal.toString());
+    }
+
+    public Set<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(Set<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }
