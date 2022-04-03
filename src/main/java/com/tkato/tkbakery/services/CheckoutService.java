@@ -37,14 +37,19 @@ public class CheckoutService {
         orderItems.forEach((item) -> order.add(item));
 
         // Create new customer object
-        Customer customer = new Customer();
-        customer.setName(checkoutData.getName());
-        customer.setEmail(checkoutData.getEmail());
-        customer.setPhoneNumber(checkoutData.getPhoneNumber());
-        customer.add(order);
+        Customer existing = repo.findByEmail(checkoutData.getEmail());
 
-        repo.save(customer);
-
+        if (existing != null) {
+            existing.add(order);
+            repo.save(existing);
+        } else {
+            Customer customer = new Customer();
+            customer.setName(checkoutData.getName());
+            customer.setEmail(checkoutData.getEmail());
+            customer.setPhoneNumber(checkoutData.getPhoneNumber());
+            customer.add(order);
+            repo.save(customer);
+        }
         return orderId;
     }
 }
