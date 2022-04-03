@@ -12,7 +12,7 @@ $(document).ready(function () {
             let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
             let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
             let buttons = "<div class=\"cart-item-buttons\"><input type=\"number\" min=\"1\" max=\"6\" placeholder=\"1\"><button>Update</button><button class=\"cart-item-remove\">Remove</button></div>"
-            let price = "<div class=\"cart-item-price-qty\"><p>" + item.unitPrice + "</p><p>" + item.quantity + " x " + item.unitPrice + "</p></div>";
+            let price = "<div class=\"cart-item-price-qty\"><p>$" + item.unitPrice + "</p><p>" + item.quantity + " x $" + item.unitPrice + "</p></div>";
             let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttons + price + "</div>";
             $("#cart-hasitem").append(prod);
             subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
@@ -138,7 +138,7 @@ function removeFromCart() {
 // Adds the subtotal and checkout button for the /cart page
 function totalsAndCheckoutButton(subtotal) {
     let totals = "<div id=\"subtotal\">Your total: $" + subtotal.toString() + "</div>"
-    let checkoutBtn = "<div><a href=\"/checkout\"><button>Checkout</button></a></div>"
+    let checkoutBtn = "<div><a href=\"/checkout\"><button id='checkout-button'>Checkout</button></a></div>"
     let component = "<div class=\"cart-checkout-container\">" + totals + checkoutBtn + "</div>";
     $("#cart-hasitem").append(component);
 }
