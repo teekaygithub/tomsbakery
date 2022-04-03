@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,8 +25,8 @@ public class OrderItem {
     @Column(name="quantity")
     private Integer quantity;
 
-    @OneToOne
-    private CustomProduct product;
+    @Column(name="product_id")
+    private Long productId;
 
     @ManyToOne
     @JoinColumn(name="order_id")
@@ -57,12 +56,12 @@ public class OrderItem {
         this.quantity = quantity;
     }
 
-    public CustomProduct getProduct() {
-        return product;
+    public Long getProductId() {
+        return productId;
     }
 
-    public void setProduct(CustomProduct product) {
-        this.product = product;
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public Order getOrder() {

@@ -12,10 +12,10 @@ $(document).ready(function () {
             let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
             let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
             let buttons = "<div class=\"cart-item-buttons\"><input type=\"number\" min=\"1\" max=\"6\" placeholder=\"1\"><button>Update</button><button class=\"cart-item-remove\">Remove</button></div>"
-            let price = "<div class=\"cart-item-price-qty\"><p>" + item.price + "</p><p>" + item.quantity + " x " + item.price + "</p></div>";
-            let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.ID + "\">" + image + name + buttons + price + "</div>";
+            let price = "<div class=\"cart-item-price-qty\"><p>" + item.unitPrice + "</p><p>" + item.quantity + " x " + item.unitPrice + "</p></div>";
+            let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttons + price + "</div>";
             $("#cart-hasitem").append(prod);
-            subtotal += parseInt(item.quantity) * parseFloat(item.price.substring(1));
+            subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
         });
 
         console.log("Subtotal:" + subtotal);
@@ -60,10 +60,11 @@ function addToCart() {
         var temp = $(this).attr("id").split('-');
         var id = temp[temp.length - 1];
 
+        // Object keys must be identical to the 'OrderItem' entity
         var product = {
-            ID: id,
+            productId: id,
             name: $("#item-name-" + id).text(),
-            price: $("#item-price-" + id).text(),
+            unitPrice: $("#item-price-" + id).text().substring(1),
             imageUrl: $("#item-image-" + id).attr("src"),
             quantity: "1"
         };
@@ -108,7 +109,7 @@ function removeFromCart() {
         // Update new cart item count
         let cartItemsList = JSON.parse(localStorage.getItem('cart-items'));
         let modifiedList = cartItemsList.filter(function (item) {
-            return item.ID != deletedId;
+            return item.productId != deletedId;
         });
         console.log(modifiedList);
         localStorage.setItem('cart-items', JSON.stringify(modifiedList));
@@ -145,7 +146,7 @@ function totalsAndCheckoutButton(subtotal) {
 function computeSubtotal(itemList) {
     let subtotal = 0;
     itemList.forEach((item) => {
-        subtotal += parseInt(item.quantity) * parseFloat(item.price.substring(1));
+        subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
     });
 
     return subtotal.toFixed(2);

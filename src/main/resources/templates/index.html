@@ -39,7 +39,7 @@
                     </div>
                     <div class="item-details">
                         <p th:id="item-name- + ${item.id}">[[${item.name}]]</p>
-                        <p th:id="item-price- + ${item.id}">[[${item.unitPrice}]]</p>
+                        <p th:id="item-price- + ${item.id}">$[[${item.unitPrice}]]</p>
                         <button class="menu-button cart-button" th:id="cart-button- + ${item.id}">Add to Cart</button>
                     </div>
                 </div>
