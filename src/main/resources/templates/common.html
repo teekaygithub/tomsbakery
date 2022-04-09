@@ -66,6 +66,8 @@
                 <a th:href="@{/menu}">Menu</a>
                 <a href="#">About</a>
                 <a href="#">Contact Us</a>
+                <a th:unless="${#authorization.expression('isAuthenticated()')}" href="/oauth2/authorization/okta" id="login-button">Sign In</a>
+                </li>
                 <a th:if="${#authorization.expression('isAuthenticated()')}">
                     <form method="post" action="/logout">
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
