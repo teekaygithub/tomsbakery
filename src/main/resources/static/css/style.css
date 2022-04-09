@@ -256,6 +256,7 @@ header {
     display: block;
 }
 
+/* Mobile */
 @media screen and (max-width: 480px) {
     h1 {
         font-size: 1.5rem;
@@ -295,6 +296,13 @@ header {
     }
 
     .footer-section {
+        width: 100%;
+    }
+}
+
+/* Medium Devices */
+@media screen and (max-width: 990px) {
+    #carousel-container {
         width: 100%;
     }
 }
