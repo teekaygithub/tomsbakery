@@ -100,6 +100,32 @@ header {
     background-color: #ff7f7f;
 }
 
+#login-button {
+    background-color: rgb(230, 136, 15);
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    padding: 0.5rem 1rem;
+}
+
+#login-button:hover {
+    background-color:rgba(64, 138, 64, 0.876);
+}
+
+#logout-button {
+    background-color: rgb(230, 136, 15);
+    color: white;
+    border: 0;
+    border-radius: 20px;
+    width: 100%;
+    transform: translate(0,-5px);
+    font-size: 1.1rem;
+}
+
+#logout-button:hover {
+    background-color:rgba(64, 138, 64, 0.876);
+}
+
 #menu {
     display: flex;
     justify-content: center;
