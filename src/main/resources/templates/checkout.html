@@ -16,7 +16,7 @@
                         <label>Your Name</label>
                     </div>
                     <div>
-                        <input type="text" id="customer-name" name="name" required>
+                        <input type="text" id="customer-name" name="name" th:value="${name}" required>
                     </div>
                 </div>
 
@@ -25,7 +25,7 @@
                         <label>Email</label>
                     </div>
                     <div>
-                        <input type="email" id="customer-email" required>
+                        <input type="email" id="customer-email" th:value="${email}" required>
                     </div>
                 </div>
 
@@ -34,7 +34,7 @@
                         <label>Phone Number</label>
                     </div>
                     <div>
-                        <input type="tel" id="customer-phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7891">
+                        <input type="tel" id="customer-phone" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" th:value="${phone}">
                     </div>
                 </div>
             </div>
