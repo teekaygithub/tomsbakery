@@ -44,3 +44,9 @@
         width: 100%;
     }
 }
+
+@media screen and (max-width: 990px) {
+    .menu-card {
+        width: 50%;
+    }
+}
