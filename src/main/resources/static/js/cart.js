@@ -20,7 +20,7 @@ $(document).ready(function () {
 
         // Populate the quantity drop-down
         for (let qty = 1; qty <= 6; qty++) {
-            $("select").append("<option value=" + qty + ">" + qty + "</option>")
+            $(".cart-item-quantity").append("<option value=" + qty + ">" + qty + "</option>")
         }
 
         console.log("Subtotal:" + subtotal);
