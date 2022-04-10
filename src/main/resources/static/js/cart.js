@@ -46,7 +46,12 @@ function addToCart() {
 
         // Cart details
         var cart = localStorage.getItem('cart');
-        let delta = parseInt($("#item-quantity option:selected").val());
+        let delta = $("#item-quantity option:selected").val();
+        if (typeof delta === 'undefined') {
+            delta = parseInt(1);
+        } else {
+            delta = parseInt(delta);
+        }
 
         if (cart) {
             var temp = JSON.parse(cart);
@@ -108,7 +113,7 @@ function removeFromCart() {
         }
 
         // Remove the element in shopping cart DOM
-        let deletedItem = $(this).parent().parent();
+        let deletedItem = $(this).parent().parent().parent();
         let deletedId = deletedItem.attr("id").split("-").slice(-1)[0];
         deletedItem.remove();
         console.log(deletedId);
@@ -146,7 +151,7 @@ function removeFromCart() {
 function updateCartQuantity() {
     $(".cart-item-quantity").on("change", function() {
         console.log($(this).val());
-        let updatedItem = $(this).parent().parent();
+        let updatedItem = $(this);
         let updatedId = updatedItem.attr("id").split("-").slice(-1)[0];
         let updatedQty = parseInt($(this).val());
 
