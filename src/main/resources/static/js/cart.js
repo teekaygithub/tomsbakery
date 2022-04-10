@@ -122,7 +122,7 @@ function removeFromCart() {
         localStorage.setItem('cart-items', JSON.stringify(modifiedList));
 
         let modifiedCart = {
-            totalQuantity: modifiedList.length
+            totalQuantity: computeCartQuantity(modifiedList)
         };
 
 
@@ -190,6 +190,15 @@ function totalsAndCheckoutButton(subtotal) {
     let checkoutBtn = "<div><a href=\"/checkout\"><button id='checkout-button'>Checkout</button></a></div>"
     let component = "<div class=\"cart-checkout-container\">" + totals + checkoutBtn + "</div>";
     $("#cart-hasitem").append(component);
+}
+
+function computeCartQuantity(itemList) {
+    let totalQty = 0;
+    itemList.forEach((item) => {
+        totalQty += item.quantity
+    })
+    
+    return totalQty;
 }
 
 function computeSubtotal(itemList) {
