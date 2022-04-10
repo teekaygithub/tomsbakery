@@ -36,15 +36,6 @@
                 <li>
                     <a href="#">Contact Us</a>
                 </li>
-                <li th:unless="${#authorization.expression('isAuthenticated()')}">
-                    <a href="/oauth2/authorization/okta" id="login-button">Sign In</a>
-                </li>
-                <li th:if="${#authorization.expression('isAuthenticated()')}">
-                    <form method="post" action="/logout">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <button type="submit" id="logout-button">Logout</button>
-                    </form>
-                </li>
                 <li>
                     <div>
                         <a th:href="@{/cart}" class="flex-container">
@@ -66,14 +57,6 @@
                 <a th:href="@{/menu}">Menu</a>
                 <a href="#">About</a>
                 <a href="#">Contact Us</a>
-                <a th:unless="${#authorization.expression('isAuthenticated()')}" href="/oauth2/authorization/okta" id="login-button">Sign In</a>
-                </li>
-                <a th:if="${#authorization.expression('isAuthenticated()')}">
-                    <form method="post" action="/logout">
-                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                        <button type="submit" id="logout-button">Logout</button>
-                    </form>
-                </a>
             </div>
         </div>
     </header>

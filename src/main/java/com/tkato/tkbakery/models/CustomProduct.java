@@ -50,10 +50,6 @@ public class CustomProduct {
     @ManyToOne
     private CustomProductCategory category;
 
-    @ManyToMany
-    @JsonIgnore
-    private List<Cart> carts;
-
     @Column(name = "description")
     private String description;
 
