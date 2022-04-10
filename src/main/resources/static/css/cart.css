@@ -123,6 +123,10 @@
         width: 100%;
     }
 
+    .cart-button-price-container {
+        width: 100%;
+    }
+
     .cart-item-buttons {
         width: 100%;
     }
@@ -135,6 +139,10 @@
     .cart-item-price-qty {
         width: 100%;
         text-align: right;
+    }
+
+    .cart-item-quantity {
+        width: 40%;
     }
 }
 
@@ -151,5 +159,6 @@
 
     .cart-item-price-qty {
         width: 100%;
+        margin-top: 1rem;
     }
 }
