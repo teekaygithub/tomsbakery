@@ -11,12 +11,18 @@ $(document).ready(function () {
         cartItemsList.forEach((item) => {
             let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
             let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
-            let buttons = "<div class=\"cart-item-buttons\"><input type=\"number\" min=\"1\" max=\"6\" placeholder=\"1\"><button>Update</button><button class=\"cart-item-remove\">Remove</button></div>"
-            let price = "<div class=\"cart-item-price-qty\"><p>$" + item.unitPrice + "</p><p>" + item.quantity + " x $" + item.unitPrice + "</p></div>";
+            let buttons = "<div class=\"cart-item-buttons\"><select id=\"cart-item-quantity\"></select><button class=\"cart-item-remove\">Remove</button></div>"
+            let price = "<div class=\"cart-item-price-qty\"><p id=\"cart-item-price\">$" + item.unitPrice + "</p><p id=\"current-quantity\">" + item.quantity + " x $" + item.unitPrice + "</p></div>";
             let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttons + price + "</div>";
             $("#cart-hasitem").append(prod);
             subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
         });
+
+        // Populate the quantity drop-down
+        let dropDown = $("#cart-item-quantity");
+        for (let qty = 1; qty <= 6; qty++) {
+            dropDown.append("<option value=" + qty + ">" + qty + "</option>")
+        }
 
         console.log("Subtotal:" + subtotal);
         totalsAndCheckoutButton(subtotal.toFixed(2));
@@ -30,6 +36,7 @@ $(document).ready(function () {
     // ============================
     addToCart();
     removeFromCart();
+    updateCartQuantity();
     
 }); // end document ready
 
@@ -134,6 +141,44 @@ function removeFromCart() {
             $("#subtotal").text("Your total: $" + newSubtotal.toString());
         }
     });
+}
+
+function updateCartQuantity() {
+    $("#cart-item-quantity").on("change", function() {
+        console.log($(this).val());
+        let updatedItem = $(this).parent().parent();
+        let updatedId = updatedItem.attr("id").split("-").slice(-1)[0];
+        let updatedQty = parseInt($(this).val());
+
+        // Update cart item quantity in local storage
+        let cartItemsList = JSON.parse(localStorage.getItem('cart-items'));
+        let prevQty = null;
+        cartItemsList.forEach(x => {
+            if (x.productId == updatedId) {
+                prevQty = x.quantity;
+                x.quantity = updatedQty;
+            }
+        });
+        localStorage.setItem('cart-items', JSON.stringify(cartItemsList));
+
+        // Update total quantity in 'cart' object in local storage
+        let cart = JSON.parse(localStorage.getItem("cart"));
+        if (prevQty > 0) {
+            if (prevQty < updatedQty) { // Added item
+                cart.totalQuantity += (updatedQty - prevQty);
+            } else { // Removed item
+                cart.totalQuantity -= (prevQty - updatedQty);
+            }
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+
+        // Update the displayed item count in cart page
+        let cur = $("#current-quantity");
+        cur.text(updatedQty + " x " + $("#cart-item-price").text());
+
+        // Update the cart logo in navigation bar
+        $(".cart-count").text(cart.totalQuantity);
+    })
 }
 
 // Adds the subtotal and checkout button for the /cart page
