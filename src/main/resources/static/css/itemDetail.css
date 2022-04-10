@@ -31,6 +31,12 @@
     width: 45%;
 }
 
+#item-quantity {
+    width: 40%;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
 @media screen and (max-width: 480px) {
     .item-details-container {
         flex-direction: column;
@@ -46,6 +52,16 @@
     }
 
     .description-field input, button {
+        width: 100%;
+    }
+
+    #item-quantity {
+        width: 50%;
+    }
+}
+
+@media screen and (min-width: 480px) and (max-width: 990px) {
+    #item-quantity {
         width: 100%;
     }
 }

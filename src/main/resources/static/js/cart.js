@@ -39,19 +39,20 @@ function addToCart() {
 
         // Cart details
         var cart = localStorage.getItem('cart');
+        let delta = parseInt($("#item-quantity option:selected").val());
 
         if (cart) {
             var temp = JSON.parse(cart);
             console.log('Existing cart, quantity: ' + temp.totalQuantity);
-            temp.totalQuantity += 1;
+            temp.totalQuantity += delta;
             localStorage.setItem('cart', JSON.stringify(temp));
             $(".cart-count").text(temp.totalQuantity);
         } else {
             cart = {
-                totalQuantity: 1
+                totalQuantity: delta
             };
             localStorage.setItem('cart', JSON.stringify(cart));
-            $(".cart-count").text("1");
+            $(".cart-count").text(delta.toString());
         }
 
         // Cart items
@@ -66,7 +67,7 @@ function addToCart() {
             name: $("#item-name-" + id).text(),
             unitPrice: $("#item-price-" + id).text().substring(1),
             imageUrl: $("#item-image-" + id).attr("src"),
-            quantity: "1"
+            quantity: delta
         };
 
         // Second add the item to the array of existing cart items

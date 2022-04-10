@@ -18,7 +18,14 @@
             </div>
             <div class="description-field">
                 <p>Qty: (Max 6 per order)</p>
-                <input type="number" placeholder="1" min="1" max="6" style="display:block;padding:1rem;">
+                <select id="item-quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
             </div>
             <div class="description-field">
                 <button class="menu-button cart-button" th:id="cart-button- + ${item.id}">Add to Cart</i></button>
