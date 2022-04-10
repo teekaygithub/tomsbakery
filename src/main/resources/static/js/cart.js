@@ -11,9 +11,10 @@ $(document).ready(function () {
         cartItemsList.forEach((item) => {
             let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
             let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
+            let buttonPriceContainer = "<div class=\"cart-button-price-container\">";
             let buttons = "<div class=\"cart-item-buttons\"><select class=\"cart-item-quantity\" id=\"cart-item-quantity-" + item.productId + "\"></select><button class=\"cart-item-remove\">Remove</button></div>"
             let price = "<div class=\"cart-item-price-qty\"><p id=\"cart-item-price\">$" + item.unitPrice + "</p><p id=\"current-quantity-" + item.productId + "\">" + item.quantity + " x $" + item.unitPrice + "</p></div>";
-            let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttons + price + "</div>";
+            let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttonPriceContainer + buttons + price + "</div></div>";
             $("#cart-hasitem").append(prod);
             subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
         });
