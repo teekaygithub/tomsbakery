@@ -53,6 +53,17 @@ i.fa-spinner {
     margin-left: 0.5rem;
 }
 
+#checkout-warning {
+    border: 1px solid;
+    background-color: rgb(230,136,30);
+    color: white;
+    padding: 1rem;
+}
+
+#checkout-warning a {
+    color: blue;
+}
+
 @media screen and (max-width: 480px) {
     #checkout-container {
         width: 95vw;
