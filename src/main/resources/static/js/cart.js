@@ -11,17 +11,16 @@ $(document).ready(function () {
         cartItemsList.forEach((item) => {
             let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
             let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
-            let buttons = "<div class=\"cart-item-buttons\"><select id=\"cart-item-quantity\"></select><button class=\"cart-item-remove\">Remove</button></div>"
-            let price = "<div class=\"cart-item-price-qty\"><p id=\"cart-item-price\">$" + item.unitPrice + "</p><p id=\"current-quantity\">" + item.quantity + " x $" + item.unitPrice + "</p></div>";
+            let buttons = "<div class=\"cart-item-buttons\"><select class=\"cart-item-quantity\" id=\"cart-item-quantity-" + item.productId + "\"></select><button class=\"cart-item-remove\">Remove</button></div>"
+            let price = "<div class=\"cart-item-price-qty\"><p id=\"cart-item-price\">$" + item.unitPrice + "</p><p id=\"current-quantity-" + item.productId + "\">" + item.quantity + " x $" + item.unitPrice + "</p></div>";
             let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttons + price + "</div>";
             $("#cart-hasitem").append(prod);
             subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
         });
 
         // Populate the quantity drop-down
-        let dropDown = $("#cart-item-quantity");
         for (let qty = 1; qty <= 6; qty++) {
-            dropDown.append("<option value=" + qty + ">" + qty + "</option>")
+            $("select").append("<option value=" + qty + ">" + qty + "</option>")
         }
 
         console.log("Subtotal:" + subtotal);
@@ -144,7 +143,7 @@ function removeFromCart() {
 }
 
 function updateCartQuantity() {
-    $("#cart-item-quantity").on("change", function() {
+    $(".cart-item-quantity").on("change", function() {
         console.log($(this).val());
         let updatedItem = $(this).parent().parent();
         let updatedId = updatedItem.attr("id").split("-").slice(-1)[0];
@@ -173,11 +172,15 @@ function updateCartQuantity() {
         }
 
         // Update the displayed item count in cart page
-        let cur = $("#current-quantity");
+        let cur = $("#current-quantity-" + updatedId);
         cur.text(updatedQty + " x " + $("#cart-item-price").text());
 
         // Update the cart logo in navigation bar
         $(".cart-count").text(cart.totalQuantity);
+
+        // Recompute cart totals
+        let newSubtotal = computeSubtotal(cartItemsList);
+        $("#subtotal").text("Your total: $" + newSubtotal.toString());
     })
 }
 
