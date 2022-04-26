@@ -16,9 +16,10 @@ Run 'mvn clean install', then 'mvn spring-boot:run'
 # Run docker container by 'run' command
 # ============================================
 
-Assuming an image exists (docker-pull or docker-build), run with the following command:
+Assuming an image exists (docker-pull or docker-build), run with the following commands:
 
-docker run --rm --name=[desired container name] -d -p 8080:8080 --env-file=.env [your image name]:[version]
+docker run --name=mydb -d -e MYSQL_ROOT_PASSWORD=%SQL_TK_PW% --network tbnw -v tbvol:/data mysql:latest
+docker run --rm --name=[desired container name] -d -p 8443:8443 --env-file=.env [your image name]:[version]
 
 Make sure you have an .env file that has all the environment variables listed above.
 
