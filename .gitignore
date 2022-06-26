@@ -2,3 +2,4 @@ target/*
 .env
 .vscode
 *.p12
+.idea
