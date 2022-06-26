@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head">
+    <title>Tom's Bakery</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/itemDetail.css}">
+    <link rel="stylesheet" th:href="@{/css/cart.css}">
+    <link rel="stylesheet" th:href="@{/css/checkout.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script th:src="@{/js/carousel.js}"></script>
+    <script th:src="@{/js/cart.js}" defer></script>
+    <script th:src="@{/js/checkout.js}"></script>
+    <script th:src="@{/js/navigation.js}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+
+<body>
+    <header th:fragment="nav-header">
+        <div id="header-logo">
+            <a href="/">
+                <img th:src="@{'/images/tomsbakerylogo.png'}">
+            </a>
+        </div>
+        <nav id="nav-lg">
+            <ul>
+                <li>
+                    <a th:href="@{/menu}">Menu</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+                <li>
+                    <div>
+                        <a th:href="@{/cart}" class="flex-container">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            <div class="cart-count">
+                                0
+                            </div>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <div id="nav-small">
+            <a th:href="@{/cart}">
+                <i class="fa-solid fa-cart-shopping"></i>
+            </a>
+            <i class="fa-solid fa-bars" id="nav-collapsible"></i>
+            <div id="nav-menu-small">
+                <a th:href="@{/menu}">Menu</a>
+                <a href="#">About</a>
+                <a href="#">Contact Us</a>
+            </div>
+        </div>
+    </header>
+    <div th:fragment="footer" class="footer">
+        <div class="footer-section">
+            <p>Thank you for checking out Tom's Bakery!</p>
+        </div>
+        <div class="footer-section">
+            <h3>Social Links</h3>
+            <div>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#" class="footer-social-icons"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

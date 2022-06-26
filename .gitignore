@@ -1,5 +1,9 @@
-target/*
+target/
+
 .env
 .vscode
 *.p12
+
+# IntelliJ
 .idea
+*.iml

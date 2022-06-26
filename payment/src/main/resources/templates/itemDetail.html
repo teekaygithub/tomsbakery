@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head th:replace="common :: head"></head>
+
+<body>
+    <div th:replace="common :: nav-header"></div>
+    <div class="flex-container item-details-container">
+        <div class="item-image-container">
+            <img th:src="@{'/images/' + ${item.imageFile}}" th:id="item-image- + ${item.id}">
+        </div>
+        <div class="item-description-container">
+            <div class="description-field">
+                <h1 th:id="item-name- + ${item.id}">[[${item.name}]]</h1>
+            </div>
+            <div class="description-field">
+                <h3 th:id="item-price- + ${item.id}">$[[${item.unitPrice}]]</h3>
+            </div>
+            <div class="description-field">
+                <p>Qty: (Max 6 per order)</p>
+                <select id="item-quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+            </div>
+            <div class="description-field">
+                <button class="menu-button cart-button" th:id="cart-button- + ${item.id}">Add to Cart</i></button>
+            </div>
+            <p style="margin-top: 3rem;font-size:1.25rem;">[[${item.description}]]</p>
+        </div>
+    </div>
+    <div th:replace="common :: footer"></div>
+</body>
+
+</html>
