@@ -8,6 +8,8 @@ stripe:
 # MYSQL
 #########
 spring:
+  application:
+    name: payment
   jpa:
     hibernate:
       ddl-auto: update
@@ -15,6 +17,8 @@ spring:
     url: ${SQL_HOST}tomsbakery
     username: ${SQL_TK_USER}
     password: ${SQL_TK_PW}
+  kafka:
+    bootstrap-servers: localhost:9092
   
 #########
 # HTTPS Configuration

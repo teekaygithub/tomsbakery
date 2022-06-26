@@ -1,19 +1,20 @@
 package com.tkato.tomsbakery.common;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class OrderDetails {
 
     private Long id;
     private String trackingNumber;
     private BigDecimal totalPrice;
-    private Date createdDate;
+    private LocalDateTime createdDate;
 }

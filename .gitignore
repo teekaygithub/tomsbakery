@@ -1,6 +1,6 @@
 target/
 
-.env
+docker-compose/.env
 .vscode
 *.p12
 
