@@ -1,4 +1,4 @@
-package kafka;
+package com.tkato.tomsbakery.kafka;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.springframework.beans.factory.annotation.Value;
