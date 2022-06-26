@@ -5,6 +5,7 @@
 	<modules>
 		<module>payment</module>
 		<module>orders</module>
+		<module>common</module>
 	</modules>
 
 	<parent>
@@ -84,12 +85,15 @@
 	</dependencies>
 
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<version>2.7.0</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 	</build>
 
 </project>
