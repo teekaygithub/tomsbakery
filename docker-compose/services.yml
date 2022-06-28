@@ -1,0 +1,43 @@
+version: "3.9"
+
+services:
+  mydb:
+    container_name: mydb
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SQL_TK_PW}
+    volumes:
+      - tb-mount:/var/lib/mysql
+    networks:
+      - tbnw
+
+  payment:
+    image: silentglasses/payment:latest
+    container_name: payment
+    ports:
+      - "8080:8080"
+#      - "8443:8443"
+    depends_on:
+      - mydb
+      - broker
+    environment:
+      SQL_TK_USER: ${SQL_TK_USER}
+      SQL_HOST: jdbc:mysql://mydb:3306/
+      SQL_TK_PW: ${SQL_TK_PW}
+      STRIPE_PUBLIC_KEY: ${STRIPE_PUBLIC_KEY}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+    networks:
+      - tbnw
+
+  orders:
+    image: silentglasses/orders:latest
+    container_name: orders
+    ports:
+      - "8081:8081"
+    depends_on:
+      - broker
+    networks:
+      - tbnw
+
+volumes:
+  tb-mount:
