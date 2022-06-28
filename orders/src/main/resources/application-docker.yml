@@ -1,0 +1,8 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: orders
+  kafka:
+    bootstrap-servers: broker:9092

@@ -1,0 +1,39 @@
+stripe:
+  public:
+    key: ${STRIPE_PUBLIC_KEY}
+  secret:
+    key: ${STRIPE_SECRET_KEY}
+  
+#########
+# MYSQL
+#########
+spring:
+  application:
+    name: payment
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://mydb:3306/tomsbakery
+    username: ${SQL_TK_USER}
+    password: ${SQL_TK_PW}
+  kafka:
+    bootstrap-servers: broker:9092
+  
+#########
+# HTTPS Configuration
+#########
+  # Server web port
+#server:
+#  port: 8443
+#  # Enable HTTPS support (only accept HTTPS requests)
+#  ssl:
+#    enabled: true
+#    # Alias that identifies the key in the key store
+#    key-alias: tomsbakery
+#    # Keystore location
+#    key-store: classpath:tomsbakery-keystore.p12
+#    # Keystore password
+#    key-store-password: ${TOMSBAKERY_HTTPS_PW}
+#    # Keystore format
+#    key-store-type: PKCS12
