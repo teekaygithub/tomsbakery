@@ -18,7 +18,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-
+// TODO: move to common module
+// TODO: lombok + validation
 @Entity
 @Table(name="orders")
 public class Order {

@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
+// TODO: move to common module
+// TODO: lombok + validation
 @Entity
 @Table(name="order_item")
 public class OrderItem {

@@ -12,6 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="custom_product_category")
+// TODO: lombok + validation
 public class CustomProductCategory {
 
     @Id

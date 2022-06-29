@@ -23,6 +23,7 @@ import com.stripe.model.Product;
 
 @Service
 @Transactional
+// TODO: unit test
 public class ProductService {
     
     private final ProductRepository repo;

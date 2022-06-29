@@ -18,6 +18,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name="customer")
+// TODO: lombok + validation
 public class Customer {
     
     @Id

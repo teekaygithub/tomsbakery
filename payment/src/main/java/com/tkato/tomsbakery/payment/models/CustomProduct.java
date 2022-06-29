@@ -20,6 +20,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 @Table(name = "custom_product")
+// TODO: lombok + validation
 public class CustomProduct {
 
     @Id

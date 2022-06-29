@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.tkato.tomsbakery.payment.models.OrderItem;
-
+// TODO: lombok + validation
 public class CheckoutData {
     
     private String name;

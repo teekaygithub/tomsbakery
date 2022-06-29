@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+// TODO: unit test
 public class CheckoutService {
     
     private final CustomerRepository repo;
@@ -47,6 +48,7 @@ public class CheckoutService {
         orderItems.forEach((item) -> order.add(item));
 
         // Create new customer object
+        // TODO: separate customer logic below to private method
         Customer existing = repo.findByEmail(checkoutData.getEmail());
 
         if (existing != null) {
@@ -67,7 +69,7 @@ public class CheckoutService {
                 .totalPrice(order.getTotalPrice())
                 .createdDate(LocalDateTime.now())
                 .build();
-
+        // TODO: integrate Zipkin for trace data
         log.info("Sending order details, ID: {}, total price: {}",
                 orderDetails.getId(),
                 orderDetails.getTotalPrice());

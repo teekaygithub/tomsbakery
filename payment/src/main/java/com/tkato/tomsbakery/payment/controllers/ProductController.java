@@ -29,7 +29,8 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-    
+
+    // TODO: move product POST and DELETE routes to separate admin module
     @PostMapping("/register")
     public ResponseEntity<CustomProduct> registerProductRoute(@Valid @RequestBody CustomProduct customProduct) throws StripeException {
         CustomProduct newProduct = productService.registerNewProduct(customProduct);
@@ -52,6 +53,7 @@ public class ProductController {
     @GetMapping("/products/{id}")
     public String itemDetailView(@PathVariable(name = "id") Long id, Model model) {
         CustomProduct item = productService.findByProductId(id);
+        // TODO: add error attribute if product cannot be found, i.e. item == null
         model.addAttribute("item", item);
         return "itemDetail";
     }

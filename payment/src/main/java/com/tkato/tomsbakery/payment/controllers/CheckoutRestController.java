@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CheckoutRestController {
-
+    // TODO: replace with lombok slf4j
     private Logger logger = LoggerFactory.getLogger(CheckoutRestController.class);
 
     private CheckoutService service;
@@ -27,6 +27,7 @@ public class CheckoutRestController {
     }
     
     // TODO: Add exception handling for StripeException
+    // TODO: add controlleradvice for generating response upon occurrence of server exception
     @PostMapping("/api/payment-intent")
     public ResponseEntity<CreatePaymentResponse> createPaymentIntent(@RequestBody CheckoutData checkoutData) throws StripeException {
         logger.info(

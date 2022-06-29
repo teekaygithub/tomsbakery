@@ -1,5 +1,6 @@
 package com.tkato.tomsbakery.payment.dto;
 
+// TODO: lombok + validation
 public class CreatePaymentResponse {
     
     private String clientSecret;
