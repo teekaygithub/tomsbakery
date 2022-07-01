@@ -1,4 +1,4 @@
-package com.tkato.tomsbakery.orders.service;
+package com.tkato.tomsbakery.notification.service;
 
 import com.tkato.tomsbakery.common.OrderDetails;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +18,6 @@ public class OrderListener {
                 order.getTrackingNumber(),
                 order.getTotalPrice());
 
-        // TODO: save to db
+        // TODO: send notification via email
     }
 }

@@ -3,6 +3,6 @@ server:
 
 spring:
   application:
-    name: orders
+    name: notification
   kafka:
     bootstrap-servers: broker:9092

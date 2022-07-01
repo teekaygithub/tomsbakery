@@ -1,4 +1,4 @@
-package com.tkato.tomsbakery.orders.kafka;
+package com.tkato.tomsbakery.notification.kafka;
 
 import com.tkato.tomsbakery.common.OrderDetails;
 import lombok.extern.slf4j.Slf4j;
