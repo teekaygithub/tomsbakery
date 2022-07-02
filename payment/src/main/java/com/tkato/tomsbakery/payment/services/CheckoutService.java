@@ -65,6 +65,7 @@ public class CheckoutService {
 
         OrderDetails orderDetails = OrderDetails.builder()
                 .id(order.getId())
+                .email(checkoutData.getEmail())
                 .trackingNumber(order.getTrackingNumber())
                 .totalPrice(order.getTotalPrice())
                 .createdDate(LocalDateTime.now())

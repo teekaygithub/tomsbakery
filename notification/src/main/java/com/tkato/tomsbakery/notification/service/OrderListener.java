@@ -9,6 +9,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class OrderListener {
 
+    private final NotificationService notificationService;
+
+    public OrderListener(NotificationService notificationService) {
+        this.notificationService = notificationService;
+    }
+
     @KafkaListener(
             topics = "orders",
             groupId = "com.tkato.tomsbakery"
@@ -19,5 +25,6 @@ public class OrderListener {
                 order.getTotalPrice());
 
         // TODO: send notification via email
+        notificationService.sendEmail(order.getEmail(), order.getTrackingNumber());
     }
 }

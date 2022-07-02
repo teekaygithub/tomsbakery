@@ -14,6 +14,7 @@ import java.util.Date;
 public class OrderDetails {
 
     private Long id;
+    private String email;
     private String trackingNumber;
     private BigDecimal totalPrice;
     private LocalDateTime createdDate;
