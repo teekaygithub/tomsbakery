@@ -30,15 +30,16 @@ services:
     networks:
       - tbnw
 
-  orders:
-    image: silentglasses/orders:latest
-    container_name: orders
+  notification:
+    image: silentglasses/notification:latest
+    container_name: notification
     ports:
       - "8081:8081"
     depends_on:
       - broker
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      TOMSBAKERY_EMAIL_PW: ${TOMSBAKERY_EMAIL_PW}
     networks:
       - tbnw
 
