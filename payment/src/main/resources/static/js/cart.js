@@ -9,12 +9,66 @@ $(document).ready(function () {
         let cartItemsList = JSON.parse(localStorage.getItem('cart-items'));
         let subtotal = 0;
         cartItemsList.forEach((item) => {
-            let image = "<div class=\"cart-item-image\"><img src=\"" + item.imageUrl + "\" ></div>";
-            let name = "<div class=\"cart-item-name\"><p>" + item.name + "</p></div>";
-            let buttonPriceContainer = "<div class=\"cart-button-price-container\">";
-            let buttons = "<div class=\"cart-item-buttons\"><select class=\"cart-item-quantity\" id=\"cart-item-quantity-" + item.productId + "\"></select><button class=\"cart-item-remove\">Remove</button></div>"
-            let price = "<div class=\"cart-item-price-qty\"><p id=\"cart-item-price\">$" + item.unitPrice + "</p><p id=\"current-quantity-" + item.productId + "\">" + item.quantity + " x $" + item.unitPrice + "</p></div>";
-            let prod = "<div class=\"cart-item\" id=\"cart-item-" + item.productId + "\">" + image + name + buttonPriceContainer + buttons + price + "</div></div>";
+
+            // PRODUCT IMAGE
+            const imageContainer = document.createElement("div")
+            imageContainer.className = "cart-item-image"
+            const image = document.createElement("img")
+            image.src = item.imageUrl
+            imageContainer.appendChild(image)
+
+            // PRODUCT NAME
+            const nameContainer = document.createElement("div")
+            nameContainer.className = "cart-item-name"
+            const para = document.createElement("p")
+            const name = document.createTextNode(item.name)
+            para.appendChild(name)
+            nameContainer.appendChild(para)
+
+            // PRODUCT BUTTONS
+            const buttonPriceContainer = document.createElement("div")
+            buttonPriceContainer.className = "cart-button-price-container"
+
+            const buttonContainer = document.createElement("div")
+            buttonContainer.className = "cart-item-buttons"
+
+            const quantitySelect = document.createElement("select")
+            quantitySelect.className = "cart-item-quantity"
+            quantitySelect.id=`cart-item-quantity-${item.productId}`
+
+            const removeButton = document.createElement("button")
+            removeButton.className = "cart-item-remove"
+            removeButton.appendChild(document.createTextNode("Remove"))
+
+            buttonContainer.appendChild(quantitySelect)
+            buttonContainer.appendChild(removeButton)
+
+            // PRODUCT PRICE
+            const priceContainer = document.createElement("div")
+            priceContainer.className = "cart-item-price-qty"
+
+            const paraUnitPrice = document.createElement("p")
+            paraUnitPrice.id = "cart-item-price"
+            paraUnitPrice.appendChild(document.createTextNode(`$${item.unitPrice}`))
+
+            const paraTotalPrice = document.createElement("p")
+            paraTotalPrice.id = `current-quantity-${item.productId}`
+            paraTotalPrice.appendChild(document.createTextNode(`${item.quantity} x $${item.unitPrice}`))
+
+            priceContainer.appendChild(paraUnitPrice)
+            priceContainer.appendChild(paraTotalPrice)
+            buttonPriceContainer.appendChild(buttonContainer)
+            buttonPriceContainer.appendChild(priceContainer)
+
+            // Now put everything together
+            const prod = document.createElement("div")
+            prod.className = "cart-item"
+            prod.id = `cart-item-${item.productId}`
+
+            prod.appendChild(imageContainer)
+            prod.appendChild(nameContainer)
+            prod.appendChild(buttonPriceContainer)
+
             $("#cart-hasitem").append(prod);
             subtotal += parseInt(item.quantity) * parseFloat(item.unitPrice);
         });
